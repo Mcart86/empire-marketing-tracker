@@ -7,37 +7,18 @@
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   :root {
-    --bg: #ffffff;
-    --bg-secondary: #f7f7f5;
-    --text: #1a1a1a;
-    --text-secondary: #6b6b6b;
-    --text-tertiary: #aaaaaa;
-    --border: rgba(0,0,0,0.12);
-    --border-strong: rgba(0,0,0,0.22);
-    --radius: 8px;
-    --radius-lg: 12px;
+    --bg: #ffffff; --bg-secondary: #f7f7f5;
+    --text: #1a1a1a; --text-secondary: #6b6b6b; --text-tertiary: #aaaaaa;
+    --border: rgba(0,0,0,0.12); --border-strong: rgba(0,0,0,0.22);
+    --radius: 8px; --radius-lg: 12px;
   }
   @media (prefers-color-scheme: dark) {
-    :root {
-      --bg: #1c1c1c;
-      --bg-secondary: #252525;
-      --text: #f0f0f0;
-      --text-secondary: #999;
-      --text-tertiary: #666;
-      --border: rgba(255,255,255,0.1);
-      --border-strong: rgba(255,255,255,0.2);
-    }
+    :root { --bg:#1c1c1c; --bg-secondary:#252525; --text:#f0f0f0; --text-secondary:#999; --text-tertiary:#666; --border:rgba(255,255,255,0.1); --border-strong:rgba(255,255,255,0.2); }
     .priority.high   { background:#501313; color:#F7C1C1; border-color:#A32D2D; }
     .priority.medium { background:#412402; color:#FAC775; border-color:#854F0B; }
     .priority.low    { background:#173404; color:#C0DD97; border-color:#3B6D11; }
   }
-  body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    min-height: 100vh;
-    padding: 2rem 1rem;
-  }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; padding: 2rem 1rem; }
   .wrap { max-width: 740px; margin: 0 auto; }
   .header { margin-bottom: 2rem; }
   .header h1 { font-size: 22px; font-weight: 600; color: var(--text); line-height: 1.3; }
@@ -47,64 +28,35 @@
   .progress-bar { height: 6px; background: var(--border); border-radius: 99px; overflow: hidden; }
   .progress-fill { height: 100%; background: var(--text); border-radius: 99px; transition: width 0.3s ease; }
   .tabs { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 1.25rem; }
-  .tab {
-    padding: 5px 14px; font-size: 13px;
-    border: 0.5px solid var(--border-strong);
-    border-radius: 99px;
-    background: transparent;
-    color: var(--text-secondary);
-    cursor: pointer;
-    transition: all 0.15s;
-    font-family: inherit;
-  }
+  .tab { padding: 5px 14px; font-size: 13px; border: 0.5px solid var(--border-strong); border-radius: 99px; background: transparent; color: var(--text-secondary); cursor: pointer; transition: all 0.15s; font-family: inherit; }
   .tab:hover { background: var(--bg-secondary); }
   .tab.active { background: var(--text); color: var(--bg); border-color: var(--text); }
-  .section-title {
-    font-size: 11px; font-weight: 600;
-    text-transform: uppercase; letter-spacing: 0.08em;
-    color: var(--text-tertiary);
-    margin: 1.25rem 0 8px;
-  }
-  .task-item {
-    display: flex; align-items: center; gap: 10px;
-    padding: 11px 14px;
-    background: var(--bg);
-    border: 0.5px solid var(--border);
-    border-radius: var(--radius);
-    margin-bottom: 6px;
-    cursor: pointer;
-    transition: border-color 0.15s, background 0.15s;
-  }
-  .task-item:hover { border-color: var(--border-strong); background: var(--bg-secondary); }
-  .task-item.done { opacity: 0.45; }
-  .task-item.done .task-name { text-decoration: line-through; color: var(--text-secondary); }
-  .checkbox {
-    width: 18px; height: 18px;
-    border-radius: 50%;
-    border: 1.5px solid var(--border-strong);
-    flex-shrink: 0;
-    display: flex; align-items: center; justify-content: center;
-    transition: all 0.15s;
-  }
+  .section-title { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-tertiary); margin: 1.25rem 0 8px; }
+  .task-card { background: var(--bg); border: 0.5px solid var(--border); border-radius: var(--radius); margin-bottom: 6px; overflow: hidden; transition: border-color 0.15s; }
+  .task-card:hover { border-color: var(--border-strong); }
+  .task-card.done { opacity: 0.45; }
+  .task-card.done .task-name { text-decoration: line-through; color: var(--text-secondary); }
+  .task-row { display: flex; align-items: center; gap: 10px; padding: 11px 14px; cursor: pointer; }
+  .checkbox { width: 18px; height: 18px; border-radius: 50%; border: 1.5px solid var(--border-strong); flex-shrink: 0; display: flex; align-items: center; justify-content: center; transition: all 0.15s; }
   .checkbox.checked { background: var(--text); border-color: var(--text); }
-  .checkbox.checked::after {
-    content: '';
-    width: 5px; height: 8px;
-    border: 1.5px solid var(--bg);
-    border-top: none; border-left: none;
-    transform: rotate(45deg) translateY(-1px);
-    display: block;
-  }
+  .checkbox.checked::after { content: ''; width: 5px; height: 8px; border: 1.5px solid var(--bg); border-top: none; border-left: none; transform: rotate(45deg) translateY(-1px); display: block; }
   .task-name { font-size: 14px; color: var(--text); flex: 1; min-width: 0; }
   .due { font-size: 12px; color: var(--text-tertiary); white-space: nowrap; }
-  .priority {
-    font-size: 11px; padding: 2px 9px;
-    border-radius: 99px; font-weight: 500;
-    white-space: nowrap; border: 0.5px solid;
-  }
+  .priority { font-size: 11px; padding: 2px 9px; border-radius: 99px; font-weight: 500; white-space: nowrap; border: 0.5px solid; }
   .priority.high   { background:#FCEBEB; color:#A32D2D; border-color:#F09595; }
   .priority.medium { background:#FAEEDA; color:#854F0B; border-color:#FAC775; }
   .priority.low    { background:#EAF3DE; color:#3B6D11; border-color:#C0DD97; }
+  .notes-btn { background: none; border: 0.5px solid var(--border-strong); border-radius: var(--radius); padding: 3px 9px; font-size: 12px; color: var(--text-secondary); cursor: pointer; white-space: nowrap; font-family: inherit; transition: all 0.15s; flex-shrink: 0; }
+  .notes-btn:hover { background: var(--bg-secondary); color: var(--text); }
+  .notes-btn.has-note { color: var(--text); }
+  .notes-panel { border-top: 0.5px solid var(--border); padding: 12px 14px; background: var(--bg-secondary); display: none; }
+  .notes-panel.open { display: block; }
+  .notes-panel textarea { width: 100%; font-size: 13px; font-family: inherit; color: var(--text); background: var(--bg); border: 0.5px solid var(--border-strong); border-radius: var(--radius); padding: 8px 10px; resize: vertical; min-height: 70px; outline: none; line-height: 1.5; }
+  .notes-panel textarea:focus { border-color: var(--text-secondary); }
+  .notes-panel textarea::placeholder { color: var(--text-tertiary); }
+  .notes-footer { display: flex; justify-content: flex-end; margin-top: 8px; }
+  .save-btn { background: var(--text); color: var(--bg); border: none; border-radius: var(--radius); padding: 5px 14px; font-size: 13px; font-family: inherit; cursor: pointer; transition: opacity 0.15s; }
+  .save-btn:hover { opacity: 0.8; }
   .empty { font-size: 14px; color: var(--text-tertiary); padding: 1rem 0; }
 </style>
 </head>
@@ -114,7 +66,6 @@
     <h1>Empire Promo &amp; Greek Empire — Marketing Tracker</h1>
     <p>Mike &nbsp;·&nbsp; In progress</p>
   </div>
-
   <div class="progress-section">
     <div class="progress-label">
       <span>Overall progress</span>
@@ -122,7 +73,6 @@
     </div>
     <div class="progress-bar"><div class="progress-fill" id="progress-fill" style="width:0%"></div></div>
   </div>
-
   <div class="tabs">
     <button class="tab active" onclick="setFilter(this,'all')">All</button>
     <button class="tab" onclick="setFilter(this,'todo')">To do</button>
@@ -134,82 +84,75 @@
     <button class="tab" onclick="setFilter(this,'greek_empire')">Greek Empire</button>
     <button class="tab" onclick="resetAll()">Reset all</button>
   </div>
-
   <div id="task-list"></div>
 </div>
 
 <script>
 const tasks = [
-  { id:1, name:"Overview video",                       group:"empire_promo", priority:"high",   due:"Apr 7, 2026",  done:false },
-  { id:2, name:"Aggie set up",                          group:"empire_promo", priority:"medium", due:"Apr 10, 2026", done:false },
-  { id:3, name:"Thumbnails for website",                group:"greek_empire", priority:"medium", due:"Apr 8, 2026",  done:false },
-  { id:4, name:"Design studio",                         group:"greek_empire", priority:"high",   due:"Apr 9, 2026",  done:false },
-  { id:5, name:"Google Biz Profile",                    group:"greek_empire", priority:"high",   due:"Apr 5, 2026",  done:false },
-  { id:6, name:"Alt logos",                             group:"greek_empire", priority:"medium", due:"Apr 12, 2026", done:false },
-  { id:7, name:"Greek postcard mailer",                 group:"greek_empire", priority:"low",    due:"Apr 18, 2026", done:false },
-  { id:8, name:"Greek Empire box ideas",                group:"greek_empire", priority:"low",    due:"Apr 20, 2026", done:false },
-  { id:9, name:"Swag box for Greek Empire campus reps", group:"greek_empire", priority:"medium", due:"Apr 15, 2026", done:false },
+  { id:1, name:"Overview video",                       group:"empire_promo", priority:"high",   due:"Apr 7, 2026",  done:false, note:"" },
+  { id:2, name:"Aggie set up",                          group:"empire_promo", priority:"medium", due:"Apr 10, 2026", done:false, note:"" },
+  { id:3, name:"Thumbnails for website",                group:"greek_empire", priority:"medium", due:"Apr 8, 2026",  done:false, note:"" },
+  { id:4, name:"Design studio",                         group:"greek_empire", priority:"high",   due:"Apr 9, 2026",  done:false, note:"" },
+  { id:5, name:"Google Biz Profile",                    group:"greek_empire", priority:"high",   due:"Apr 5, 2026",  done:false, note:"" },
+  { id:6, name:"Alt logos",                             group:"greek_empire", priority:"medium", due:"Apr 12, 2026", done:false, note:"" },
+  { id:7, name:"Greek postcard mailer",                 group:"greek_empire", priority:"low",    due:"Apr 18, 2026", done:false, note:"" },
+  { id:8, name:"Greek Empire box ideas",                group:"greek_empire", priority:"low",    due:"Apr 20, 2026", done:false, note:"" },
+  { id:9, name:"Swag box for Greek Empire campus reps", group:"greek_empire", priority:"medium", due:"Apr 15, 2026", done:false, note:"" },
 ];
 
 let currentFilter = 'all';
-const KEY = 'empire_tracker_v2';
+let openNote = null;
+const KEY = 'empire_tracker_v3';
 
-function save() { try { localStorage.setItem(KEY, JSON.stringify(tasks.map(t=>t.done))); } catch(e){} }
-function load() { try { const s=JSON.parse(localStorage.getItem(KEY)); if(s) tasks.forEach((t,i)=>{ if(s[i]!==undefined) t.done=s[i]; }); } catch(e){} }
-
+function save() { try { localStorage.setItem(KEY, JSON.stringify(tasks.map(t=>({done:t.done,note:t.note})))); } catch(e){} }
+function load() { try { const s=JSON.parse(localStorage.getItem(KEY)); if(s) tasks.forEach((t,i)=>{ if(s[i]){ t.done=s[i].done; t.note=s[i].note||""; } }); } catch(e){} }
 function toggle(id) { const t=tasks.find(t=>t.id===id); if(t){ t.done=!t.done; save(); render(); } }
-
-function setFilter(el, f) {
-  currentFilter = f;
-  document.querySelectorAll('.tab').forEach(e=>e.classList.remove('active'));
-  el.classList.add('active');
-  render();
-}
-
+function toggleNote(id) { openNote=openNote===id?null:id; render(); if(openNote===id){ setTimeout(()=>{ const ta=document.getElementById('ta-'+id); if(ta) ta.focus(); },50); } }
+function saveNote(id) { const ta=document.getElementById('ta-'+id); if(ta){ const t=tasks.find(t=>t.id===id); if(t){ t.note=ta.value; save(); } } openNote=null; render(); }
+function setFilter(el,f) { currentFilter=f; document.querySelectorAll('.tab').forEach(e=>e.classList.remove('active')); el.classList.add('active'); render(); }
 function resetAll() { tasks.forEach(t=>t.done=false); save(); render(); }
 
 function taskHTML(t) {
-  return `<div class="task-item${t.done?' done':''}" onclick="toggle(${t.id})">
-    <div class="checkbox${t.done?' checked':''}"></div>
-    <span class="task-name">${t.name}</span>
-    <span class="due">${t.due}</span>
-    <span class="priority ${t.priority}">${t.priority.charAt(0).toUpperCase()+t.priority.slice(1)}</span>
+  const isOpen=openNote===t.id;
+  const hasNote=t.note&&t.note.trim().length>0;
+  const noteEscaped=t.note.replace(/"/g,'&quot;').replace(/</g,'&lt;');
+  return `<div class="task-card${t.done?' done':''}">
+    <div class="task-row" onclick="toggle(${t.id})">
+      <div class="checkbox${t.done?' checked':''}"></div>
+      <span class="task-name">${t.name}</span>
+      <span class="due">${t.due}</span>
+      <span class="priority ${t.priority}">${t.priority.charAt(0).toUpperCase()+t.priority.slice(1)}</span>
+      <button class="notes-btn${hasNote?' has-note':''}" onclick="event.stopPropagation();toggleNote(${t.id})">${isOpen?'Close':hasNote?'View note':'+ Note'}</button>
+    </div>
+    <div class="notes-panel${isOpen?' open':''}">
+      <textarea id="ta-${t.id}" placeholder="Add a note for this task...">${noteEscaped}</textarea>
+      <div class="notes-footer"><button class="save-btn" onclick="saveNote(${t.id})">Save note</button></div>
+    </div>
   </div>`;
 }
 
 function render() {
-  const done = tasks.filter(t=>t.done).length;
-  document.getElementById('progress-count').textContent = done+' / '+tasks.length+' completed';
-  document.getElementById('progress-fill').style.width = Math.round(done/tasks.length*100)+'%';
-
-  let filtered = tasks;
-  if (currentFilter==='todo')              filtered=tasks.filter(t=>!t.done);
-  else if (currentFilter==='done')         filtered=tasks.filter(t=>t.done);
-  else if (currentFilter==='high')         filtered=tasks.filter(t=>t.priority==='high');
-  else if (currentFilter==='medium')       filtered=tasks.filter(t=>t.priority==='medium');
-  else if (currentFilter==='low')          filtered=tasks.filter(t=>t.priority==='low');
-  else if (currentFilter==='empire_promo') filtered=tasks.filter(t=>t.group==='empire_promo');
-  else if (currentFilter==='greek_empire') filtered=tasks.filter(t=>t.group==='greek_empire');
-
-  let html = '';
-  if (['all','empire_promo','greek_empire'].includes(currentFilter)) {
-    const groups = [
-      { key:'empire_promo', label:'Empire Promo' },
-      { key:'greek_empire', label:'Greek Empire' },
-    ];
-    const showGroups = currentFilter==='all' ? groups : groups.filter(g=>g.key===currentFilter);
-    showGroups.forEach(g => {
-      const items = filtered.filter(t=>t.group===g.key);
-      if (!items.length) return;
-      html += '<div class="section-title">'+g.label+'</div>';
-      items.forEach(t => html += taskHTML(t));
-    });
+  const done=tasks.filter(t=>t.done).length;
+  document.getElementById('progress-count').textContent=done+' / '+tasks.length+' completed';
+  document.getElementById('progress-fill').style.width=Math.round(done/tasks.length*100)+'%';
+  let filtered=tasks;
+  if(currentFilter==='todo')              filtered=tasks.filter(t=>!t.done);
+  else if(currentFilter==='done')         filtered=tasks.filter(t=>t.done);
+  else if(currentFilter==='high')         filtered=tasks.filter(t=>t.priority==='high');
+  else if(currentFilter==='medium')       filtered=tasks.filter(t=>t.priority==='medium');
+  else if(currentFilter==='low')          filtered=tasks.filter(t=>t.priority==='low');
+  else if(currentFilter==='empire_promo') filtered=tasks.filter(t=>t.group==='empire_promo');
+  else if(currentFilter==='greek_empire') filtered=tasks.filter(t=>t.group==='greek_empire');
+  let html='';
+  if(['all','empire_promo','greek_empire'].includes(currentFilter)){
+    const groups=[{key:'empire_promo',label:'Empire Promo'},{key:'greek_empire',label:'Greek Empire'}];
+    const show=currentFilter==='all'?groups:groups.filter(g=>g.key===currentFilter);
+    show.forEach(g=>{ const items=filtered.filter(t=>t.group===g.key); if(!items.length) return; html+='<div class="section-title">'+g.label+'</div>'; items.forEach(t=>html+=taskHTML(t)); });
   } else {
-    if (!filtered.length) html='<p class="empty">No tasks here.</p>';
-    else filtered.forEach(t => html += taskHTML(t));
+    if(!filtered.length) html='<p class="empty">No tasks here.</p>';
+    else filtered.forEach(t=>html+=taskHTML(t));
   }
-
-  document.getElementById('task-list').innerHTML = html;
+  document.getElementById('task-list').innerHTML=html;
 }
 
 load(); render();
