@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Empire Promos — Content Calendar May 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy:#1a3767; --navy-dark:#0f2147; --navy-mid:#1e4080; --navy-light:#2a4d8f;
+  --orange:#ec7626; --orange-lt:#f59347;
+  --blue:#01aeef; --green:#648d3d;
+  --white:#ffffff; --bg:#f0f3f8; --surface:#ffffff;
+  --border:#dde3ef; --border-dark:#c8d0e4;
+  --text:#1a2540; --muted:#6b7a99; --light:#9aa3bb;
+
+  --w1-bg:#ffffff; --w2-bg:#f5f7fb; --w3-bg:#ffffff; --w4-bg:#f5f7fb; --w5-bg:#ffffff;
+
+  --ps-bg:#ddeeff; --ps-fg:#1a3767;
+  --bts-bg:#fff0e0; --bts-fg:#a04800;
+  --fe-bg:#e8f5e9; --fe-fg:#2e7d32;
+  --edu-bg:#f3e8ff; --edu-fg:#6a0dad;
+  --cs-bg:#fff9e0; --cs-fg:#7a5c00;
+  --st-bg:#ffe8ea; --st-fg:#b71c1c;
+  --tbd-bg:#eeeeee; --tbd-fg:#666666;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{height:100%;font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);font-size:13px;}
+
+/* ── HEADER ─────────────────────────────────────────── */
+.hdr{
+  position:sticky;top:0;z-index:200;
+  background:var(--navy-dark);
+  border-bottom:3px solid var(--orange);
+  display:flex;align-items:center;gap:16px;
+  padding:0 20px;height:52px;
+}
+.hdr-logo{font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:2px;color:#fff;white-space:nowrap;}
+.hdr-logo span{color:var(--orange);}
+.hdr-pipe{width:1px;height:20px;background:rgba(255,255,255,.2);}
+.hdr-sub{font-size:11px;font-weight:500;color:#7a99cc;text-transform:uppercase;letter-spacing:.6px;}
+.hdr-right{margin-left:auto;display:flex;align-items:center;gap:10px;}
+.sync-badge{
+  display:flex;align-items:center;gap:5px;
+  font-family:'DM Mono',monospace;font-size:10px;color:#7a99cc;
+  background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);
+  padding:4px 10px;border-radius:20px;
+}
+.sync-dot{width:6px;height:6px;border-radius:50%;background:#4caf50;transition:background .3s;}
+.sync-dot.syncing{background:var(--orange);animation:pulse 1s infinite;}
+.sync-dot.error{background:#f44336;}
+@keyframes pulse{0%,100%{opacity:1;}50%{opacity:.4;}}
+.btn{border:none;border-radius:6px;font-family:'DM Sans',sans-serif;font-size:12px;font-weight:600;cursor:pointer;padding:7px 14px;transition:all .15s;}
+.btn-orange{background:var(--orange);color:#fff;}
+.btn-orange:hover{background:var(--orange-lt);}
+.btn-navy{background:var(--navy);color:#fff;}
+.btn-navy:hover{background:var(--navy-light);}
+.btn-ghost{background:transparent;color:var(--muted);border:1.5px solid var(--border);}
+.btn-ghost:hover{border-color:var(--navy);color:var(--navy);}
+
+/* ── STATS BAR ──────────────────────────────────────── */
+.stats-bar{
+  background:var(--surface);border-bottom:1px solid var(--border);
+  padding:7px 20px;display:flex;align-items:center;gap:16px;overflow-x:auto;
+}
+.stat{display:flex;align-items:center;gap:6px;white-space:nowrap;}
+.stat-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;}
+.stat-lbl{font-size:11px;color:var(--muted);}
+.stat-num{font-family:'DM Mono',monospace;font-size:11px;font-weight:500;color:var(--text);}
+.sdiv{width:1px;height:16px;background:var(--border);}
+
+/* ── TOOLBAR ────────────────────────────────────────── */
+.toolbar{
+  position:sticky;top:52px;z-index:190;
+  background:var(--surface);border-bottom:1px solid var(--border);
+  padding:8px 20px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;
+}
+.tb-lbl{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--light);margin-right:2px;}
+.chip{
+  display:inline-flex;align-items:center;gap:4px;
+  padding:4px 10px;border-radius:20px;
+  border:1.5px solid var(--border);background:var(--bg);
+  font-size:11px;font-weight:500;color:var(--muted);
+  cursor:pointer;transition:all .15s;white-space:nowrap;
+}
+.chip:hover{border-color:var(--navy);color:var(--navy);}
+.chip.on{background:var(--navy);border-color:var(--navy);color:#fff;}
+.chip.on.org{background:var(--orange);border-color:var(--orange);}
+.tdiv{width:1px;height:18px;background:var(--border);margin:0 2px;}
+.search-wrap{
+  margin-left:auto;display:flex;align-items:center;gap:6px;
+  background:var(--bg);border:1.5px solid var(--border);border-radius:20px;padding:4px 12px;
+}
+.search-wrap input{border:none;background:transparent;font-family:'DM Sans',sans-serif;font-size:12px;color:var(--text);outline:none;width:150px;}
+.search-wrap input::placeholder{color:var(--light);}
+
+/* ── MAIN LAYOUT ────────────────────────────────────── */
+.main{display:flex;height:calc(100vh - 52px - 38px - 44px);overflow:hidden;}
+.table-pane{flex:1;overflow:auto;}
+
+/* ── TABLE ──────────────────────────────────────────── */
+.tbl-wrap{min-width:1500px;}
+table{width:100%;border-collapse:collapse;}
+thead th{
+  position:sticky;top:0;z-index:100;
+  background:#e8ecf5;padding:8px 10px;
+  text-align:left;font-size:10px;font-weight:700;
+  text-transform:uppercase;letter-spacing:.6px;color:var(--muted);
+  border-bottom:2px solid var(--border-dark);border-right:1px solid var(--border);
+  white-space:nowrap;
+}
+thead th:last-child{border-right:none;}
+td{
+  padding:8px 10px;border-bottom:1px solid var(--border);
+  border-right:1px solid var(--border);vertical-align:top;line-height:1.45;
+}
+td:last-child{border-right:none;}
+tr.data-row{cursor:pointer;transition:filter .1s;}
+tr.data-row:hover td{filter:brightness(.97);}
+tr.data-row.selected td{outline:2px solid var(--orange);outline-offset:-1px;}
+
+/* Week color banding */
+tr.w1 td{background:#ffffff;}
+tr.w2 td{background:#f5f7fb;}
+tr.w3 td{background:#ffffff;}
+tr.w4 td{background:#f5f7fb;}
+tr.w5 td{background:#ffffff;}
+tr.data-row:hover.w1 td,tr.data-row:hover.w3 td,tr.data-row:hover.w5 td{background:#f0f4ff;}
+tr.data-row:hover.w2 td,tr.data-row:hover.w4 td{background:#ebeef7;}
+
+/* Week header row */
+tr.week-hdr td{
+  padding:0;background:none!important;border-bottom:none;
+}
+.week-hdr-inner{
+  display:flex;align-items:center;gap:12px;
+  padding:7px 20px;
+  border-left:4px solid var(--orange);
+  background:var(--navy);
+}
+.wh-label{font-family:'Bebas Neue',sans-serif;font-size:15px;letter-spacing:1.5px;color:#fff;}
+.wh-dates{font-size:11px;color:#7a99cc;font-weight:500;}
+.wh-count{margin-left:auto;font-family:'DM Mono',monospace;font-size:10px;color:#7a99cc;background:rgba(255,255,255,.08);padding:2px 8px;border-radius:10px;}
+
+/* Col widths */
+.c-date{width:100px;min-width:100px;}
+.c-theme{width:110px;min-width:110px;}
+.c-tags{width:140px;min-width:140px;}
+.c-plat{width:130px;min-width:130px;}
+.c-pillar{width:130px;min-width:130px;}
+.c-format{width:130px;min-width:130px;}
+.c-hook{width:200px;min-width:200px;}
+.c-cap{width:260px;min-width:260px;}
+.c-hash{width:180px;min-width:180px;}
+.c-cta{width:120px;min-width:120px;}
+.c-visual{width:160px;min-width:160px;}
+.c-notes{width:160px;min-width:160px;}
+.c-status{width:100px;min-width:100px;}
+
+/* Cell styles */
+.cd{font-family:'DM Mono',monospace;font-size:10px;font-weight:500;color:var(--navy);line-height:1.7;}
+.cd .wk{font-size:9px;color:var(--light);}
+.cth{font-size:11px;font-weight:600;color:var(--navy);font-style:italic;}
+.tags-cell{display:flex;flex-wrap:wrap;gap:3px;}
+.tag{display:inline-block;padding:2px 6px;border-radius:3px;font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.3px;white-space:nowrap;}
+.tag0{background:var(--navy);color:#fff;}
+.tag1{background:var(--navy-light);color:#fff;}
+.tag2{background:var(--blue);color:#fff;}
+.tag-tbd{background:#aaa;color:#fff;}
+.plat-cell{display:flex;align-items:flex-start;gap:5px;font-size:11px;font-weight:700;color:var(--navy);}
+.pi{font-size:13px;line-height:1.3;}
+.pillar-badge{display:inline-flex;align-items:center;padding:3px 8px;border-radius:4px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.3px;white-space:nowrap;}
+.fmt-cell{font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);}
+.hook-cell{font-size:11px;font-weight:600;color:var(--text);line-height:1.5;}
+.cap-cell{font-size:11px;color:var(--text);line-height:1.55;max-height:64px;overflow:hidden;text-overflow:ellipsis;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;}
+.hash-cell{font-size:10px;color:var(--blue);font-family:'DM Mono',monospace;line-height:1.7;word-break:break-all;}
+.cta-cell{font-size:11px;color:var(--orange);font-weight:600;line-height:1.5;}
+.notes-cell{font-size:11px;color:var(--muted);font-style:italic;line-height:1.5;max-height:56px;overflow:hidden;}
+.status-badge{display:inline-block;padding:3px 9px;border-radius:12px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.3px;white-space:nowrap;}
+
+/* ── EDIT DRAWER ────────────────────────────────────── */
+.drawer{
+  width:0;overflow:hidden;
+  background:var(--surface);
+  border-left:1px solid var(--border);
+  transition:width .25s cubic-bezier(.4,0,.2,1);
+  display:flex;flex-direction:column;
+  flex-shrink:0;
+}
+.drawer.open{width:420px;}
+.drawer-hdr{
+  background:var(--navy);
+  padding:14px 16px;
+  display:flex;align-items:center;gap:10px;
+  flex-shrink:0;
+}
+.drawer-hdr h3{font-family:'Bebas Neue',sans-serif;font-size:17px;letter-spacing:1px;color:#fff;flex:1;}
+.drawer-close{background:none;border:none;color:#fff;font-size:18px;cursor:pointer;opacity:.7;line-height:1;}
+.drawer-close:hover{opacity:1;}
+.drawer-body{flex:1;overflow-y:auto;padding:16px;}
+.drawer-section{margin-bottom:20px;}
+.drawer-section-title{
+  font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;
+  color:var(--muted);margin-bottom:10px;padding-bottom:6px;
+  border-bottom:1px solid var(--border);
+}
+.drow{margin-bottom:12px;}
+.drow label{display:block;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.4px;color:var(--muted);margin-bottom:4px;}
+.drow input,.drow select,.drow textarea{
+  width:100%;border:1.5px solid var(--border);border-radius:6px;
+  padding:8px 10px;font-family:'DM Sans',sans-serif;font-size:12px;color:var(--text);
+  outline:none;transition:border-color .15s;background:var(--bg);
+}
+.drow input:focus,.drow select:focus,.drow textarea:focus{border-color:var(--navy);background:#fff;}
+.drow textarea{resize:vertical;min-height:80px;line-height:1.5;}
+.drow-2col{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.drawer-footer{
+  flex-shrink:0;padding:12px 16px;
+  border-top:1px solid var(--border);
+  display:flex;justify-content:space-between;align-items:center;gap:10px;
+  background:var(--surface);
+}
+.btn-delete{background:none;border:1.5px solid #ffcdd2;color:#c62828;border-radius:6px;padding:7px 12px;font-family:'DM Sans',sans-serif;font-size:11px;font-weight:600;cursor:pointer;transition:all .15s;}
+.btn-delete:hover{background:#ffebee;border-color:#c62828;}
+.save-indicator{font-size:10px;color:#4caf50;font-weight:600;opacity:0;transition:opacity .3s;}
+.save-indicator.show{opacity:1;}
+
+/* ── ADD POST MODAL ─────────────────────────────────── */
+.overlay{display:none;position:fixed;inset:0;background:rgba(10,20,50,.55);z-index:300;align-items:center;justify-content:center;}
+.overlay.open{display:flex;}
+.modal{background:#fff;border-radius:12px;width:620px;max-width:95vw;max-height:88vh;overflow-y:auto;box-shadow:0 24px 60px rgba(0,0,0,.25);}
+.modal-hdr{background:var(--navy);padding:15px 20px;border-radius:12px 12px 0 0;display:flex;align-items:center;justify-content:space-between;}
+.modal-hdr h3{font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:1px;color:#fff;}
+.modal-close{background:none;border:none;color:#fff;font-size:20px;cursor:pointer;opacity:.7;}
+.modal-close:hover{opacity:1;}
+.modal-body{padding:20px;display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.modal-body .full{grid-column:1/-1;}
+.fg label{display:block;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--muted);margin-bottom:4px;}
+.fg input,.fg select,.fg textarea{width:100%;border:1.5px solid var(--border);border-radius:6px;padding:8px 10px;font-family:'DM Sans',sans-serif;font-size:12px;color:var(--text);outline:none;transition:border-color .15s;background:var(--bg);}
+.fg input:focus,.fg select:focus,.fg textarea:focus{border-color:var(--navy);background:#fff;}
+.fg textarea{resize:vertical;min-height:70px;}
+.modal-ftr{padding:14px 20px;border-top:1px solid var(--border);display:flex;justify-content:flex-end;gap:10px;}
+
+/* ── TOAST ──────────────────────────────────────────── */
+.toast{
+  position:fixed;bottom:20px;right:20px;z-index:999;
+  background:var(--navy-dark);color:#fff;
+  padding:10px 16px;border-radius:8px;font-size:12px;font-weight:500;
+  display:flex;align-items:center;gap:8px;
+  opacity:0;transform:translateY(8px);
+  transition:opacity .25s,transform .25s;pointer-events:none;
+}
+.toast.show{opacity:1;transform:translateY(0);}
+.toast .dot{width:6px;height:6px;border-radius:50%;background:#4caf50;flex-shrink:0;}
+.toast.err .dot{background:#f44336;}
+
+/* ── LOADING ────────────────────────────────────────── */
+.loader{
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  height:300px;gap:14px;
+}
+.loader-ring{width:36px;height:36px;border:3px solid var(--border);border-top-color:var(--orange);border-radius:50%;animation:spin .8s linear infinite;}
+@keyframes spin{to{transform:rotate(360deg);}}
+.loader-text{font-size:12px;color:var(--muted);}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="hdr">
+  <div class="hdr-logo">EMPIRE<span>PROMOS</span></div>
+  <div class="hdr-pipe"></div>
+  <div class="hdr-sub">May 2026 — Content Calendar</div>
+  <div class="hdr-right">
+    <div class="sync-badge">
+      <div class="sync-dot" id="syncDot"></div>
+      <span id="syncLabel">Connected</span>
+    </div>
+    <button class="btn btn-orange" onclick="openAddModal()">+ Add Post</button>
+  </div>
+</div>
+
+<!-- STATS BAR -->
+<div class="stats-bar" id="statsBar"></div>
+
+<!-- TOOLBAR -->
+<div class="toolbar">
+  <span class="tb-lbl">Platform</span>
+  <div class="chip on" data-f="platform" data-v="all" onclick="setFilter('platform','all',this)">All</div>
+  <div class="chip" data-f="platform" data-v="Instagram + TikTok" onclick="setFilter('platform','Instagram + TikTok',this)">📱 IG + TikTok</div>
+  <div class="chip" data-f="platform" data-v="Facebook" onclick="setFilter('platform','Facebook',this)">👥 Facebook</div>
+  <div class="chip" data-f="platform" data-v="LinkedIn" onclick="setFilter('platform','LinkedIn',this)">💼 LinkedIn</div>
+  <div class="chip" data-f="platform" data-v="X/Twitter" onclick="setFilter('platform','X/Twitter',this)">𝕏 X/Twitter</div>
+  <div class="tdiv"></div>
+  <span class="tb-lbl">Status</span>
+  <div class="chip on" data-f="status" data-v="all" onclick="setFilter('status','all',this)">All</div>
+  <div class="chip" data-f="status" data-v="To Do" onclick="setFilter('status','To Do',this)">To Do</div>
+  <div class="chip" data-f="status" data-v="In Progress" onclick="setFilter('status','In Progress',this)">In Progress</div>
+  <div class="chip" data-f="status" data-v="Scheduled" onclick="setFilter('status','Scheduled',this)">Scheduled</div>
+  <div class="chip" data-f="status" data-v="Posted" onclick="setFilter('status','Posted',this)">Posted</div>
+  <div class="chip" data-f="status" data-v="TBD" onclick="setFilter('status','TBD',this)">TBD</div>
+  <div class="tdiv"></div>
+  <span class="tb-lbl">Pillar</span>
+  <div class="chip on" data-f="pillar" data-v="all" onclick="setFilter('pillar','all',this)">All</div>
+  <div class="chip" data-f="pillar" data-v="Product Showcase" onclick="setFilter('pillar','Product Showcase',this)">Product</div>
+  <div class="chip" data-f="pillar" data-v="Behind the Scenes" onclick="setFilter('pillar','Behind the Scenes',this)">BTS</div>
+  <div class="chip" data-f="pillar" data-v="Fun & Engagement" onclick="setFilter('pillar','Fun & Engagement',this)">Engagement</div>
+  <div class="chip" data-f="pillar" data-v="Education" onclick="setFilter('pillar','Education',this)">Education</div>
+  <div class="chip" data-f="pillar" data-v="Client Spotlight" onclick="setFilter('pillar','Client Spotlight',this)">Client</div>
+  <div class="chip" data-f="pillar" data-v="Seasonal & Timely" onclick="setFilter('pillar','Seasonal & Timely',this)">Seasonal</div>
+  <div class="search-wrap">
+    <svg width="11" height="11" fill="none" stroke="#9aa3bb" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+    <input type="text" placeholder="Search posts..." oninput="doSearch(this.value)">
+  </div>
+</div>
+
+<!-- MAIN -->
+<div class="main">
+  <div class="table-pane" id="tablePane">
+    <div class="loader" id="loader">
+      <div class="loader-ring"></div>
+      <div class="loader-text">Loading calendar from Supabase...</div>
+    </div>
+    <div class="tbl-wrap" id="tblWrap" style="display:none"></div>
+  </div>
+  <!-- EDIT DRAWER -->
+  <div class="drawer" id="drawer">
+    <div class="drawer-hdr">
+      <h3 id="drawerTitle">Edit Post</h3>
+      <button class="drawer-close" onclick="closeDrawer()">✕</button>
+    </div>
+    <div class="drawer-body" id="drawerBody"></div>
+    <div class="drawer-footer">
+      <button class="btn-delete" onclick="deletePost()">🗑 Delete Post</button>
+      <div style="display:flex;align-items:center;gap:10px;">
+        <span class="save-indicator" id="saveIndicator">✓ Saved</span>
+        <button class="btn btn-ghost" onclick="closeDrawer()">Cancel</button>
+        <button class="btn btn-orange" onclick="saveDrawer()">Save Changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ADD MODAL -->
+<div class="overlay" id="addOverlay">
+  <div class="modal">
+    <div class="modal-hdr"><h3>ADD NEW POST</h3><button class="modal-close" onclick="closeAddModal()">✕</button></div>
+    <div class="modal-body">
+      <div class="fg"><label>Date</label><input id="m-date" placeholder="e.g. Fri, May 1"></div>
+      <div class="fg"><label>Week</label><select id="m-week"><option>Week 1</option><option>Week 2</option><option>Week 3</option><option>Week 4</option><option>Week 5</option></select></div>
+      <div class="fg"><label>Theme</label><input id="m-theme" placeholder="e.g. Summer Products"></div>
+      <div class="fg"><label>Platform</label><select id="m-platform"><option>Instagram + TikTok</option><option>Facebook</option><option>LinkedIn</option><option>X/Twitter</option></select></div>
+      <div class="fg"><label>Content Pillar</label><select id="m-pillar"><option>Product Showcase</option><option>Behind the Scenes</option><option>Fun & Engagement</option><option>Education</option><option>Client Spotlight</option><option>Seasonal & Timely</option><option>TBD</option></select></div>
+      <div class="fg"><label>Status</label><select id="m-status"><option>To Do</option><option>In Progress</option><option>Scheduled</option><option>Posted</option><option>TBD</option></select></div>
+      <div class="fg full"><label>Topic Tags (comma-separated, max 3)</label><input id="m-tags" placeholder="e.g. Summer, Sunglasses, Events"></div>
+      <div class="fg full"><label>Format</label><input id="m-format" placeholder="e.g. IG: Carousel  |  TT: Video"></div>
+      <div class="fg full"><label>Caption Hook</label><input id="m-hook" placeholder="The opening line..."></div>
+      <div class="fg full"><label>Full Caption</label><textarea id="m-caption"></textarea></div>
+      <div class="fg full"><label>Hashtags</label><input id="m-hashtags" placeholder="#EmpirePromotionalProducts ..."></div>
+      <div class="fg full"><label>CTA</label><input id="m-cta" placeholder="e.g. EmpirePromos.com"></div>
+      <div class="fg full"><label>Visual Direction</label><textarea id="m-visual"></textarea></div>
+      <div class="fg full"><label>Copy Notes</label><textarea id="m-notes"></textarea></div>
+    </div>
+    <div class="modal-ftr">
+      <button class="btn btn-ghost" onclick="closeAddModal()">Cancel</button>
+      <button class="btn btn-orange" onclick="submitAdd()">Add Post</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"><div class="dot"></div><span id="toastMsg">Saved</span></div>
+
+<script>
+// ── CONFIG ────────────────────────────────────────────────────
+const SB_URL = 'https://lbudlspmjobhmrrwpfhg.supabase.co';
+const SB_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImxidWRsc3Btam9iaG1ycndwZmhnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzUwNDM0ODcsImV4cCI6MjA5MDYxOTQ4N30.rSzDOWpTIkugbUEkcXYL6c9BHnzOZujSl11TOH_0aF0';
+const TABLE = 'content_calendar';
+
+// ── STATE ─────────────────────────────────────────────────────
+let posts = [];
+let filters = { platform:'all', status:'all', pillar:'all' };
+let search = '';
+let selectedId = null;
+let drawerPost = null;
+let saveTimer = null;
+
+// ── SUPABASE API ──────────────────────────────────────────────
+const hdrs = { 'apikey': SB_KEY, 'Authorization': `Bearer ${SB_KEY}`, 'Content-Type': 'application/json', 'Prefer': 'return=representation' };
+
+async function sbFetch(path, opts={}) {
+  const r = await fetch(`${SB_URL}/rest/v1/${path}`, { headers: hdrs, ...opts });
+  if (!r.ok) { const t = await r.text(); throw new Error(t); }
+  return r.status === 204 ? null : r.json();
+}
+
+async function loadPosts() {
+  setSyncState('syncing','Loading...');
+  try {
+    const data = await sbFetch(`${TABLE}?select=*&order=id.asc`);
+    if (!data || data.length === 0) {
+      await seedData();
+    } else {
+      posts = data.map(normalizePost);
+    }
+    setSyncState('ok','Synced');
+    render();
+  } catch(e) {
+    setSyncState('error','Offline');
+    showToast('Could not connect to Supabase. Check table setup.', true);
+    posts = DEFAULT_POSTS.map(normalizePost);
+    render();
+  }
+  document.getElementById('loader').style.display='none';
+  document.getElementById('tblWrap').style.display='block';
+}
+
+function normalizePost(p) {
+  return {
+    ...p,
+    tags: Array.isArray(p.tags) ? p.tags : (typeof p.tags === 'string' ? JSON.parse(p.tags||'[]') : [])
+  };
+}
+
+async function seedData() {
+  showToast('First run — seeding calendar data...');
+  setSyncState('syncing','Seeding...');
+  try {
+    const rows = DEFAULT_POSTS.map(p => ({ ...p, tags: JSON.stringify(p.tags) }));
+    // Insert in batches of 10
+    for (let i = 0; i < rows.length; i += 10) {
+      await sbFetch(TABLE, { method:'POST', body: JSON.stringify(rows.slice(i, i+10)) });
+    }
+    const data = await sbFetch(`${TABLE}?select=*&order=id.asc`);
+    posts = data.map(normalizePost);
+    setSyncState('ok','Synced');
+    showToast('Calendar loaded successfully ✓');
+  } catch(e) {
+    setSyncState('error','Seed failed');
+    posts = DEFAULT_POSTS.map(normalizePost);
+    showToast('Seeding failed — running in offline mode', true);
+  }
+}
+
+async function updatePost(id, fields) {
+  setSyncState('syncing','Saving...');
+  try {
+    await sbFetch(`${TABLE}?id=eq.${id}`, {
+      method: 'PATCH',
+      body: JSON.stringify({ ...fields, updated_at: new Date().toISOString() })
+    });
+    const idx = posts.findIndex(p => p.id === id);
+    if (idx > -1) Object.assign(posts[idx], fields);
+    setSyncState('ok','Saved ✓');
+    showToast('Changes saved to Supabase ✓');
+    document.getElementById('saveIndicator').classList.add('show');
+    setTimeout(() => document.getElementById('saveIndicator').classList.remove('show'), 2500);
+  } catch(e) {
+    setSyncState('error','Save failed');
+    showToast('Save failed — check connection', true);
+  }
+}
+
+async function insertPost(p) {
+  setSyncState('syncing','Saving...');
+  try {
+    const row = { ...p, tags: JSON.stringify(p.tags) };
+    const result = await sbFetch(TABLE, { method:'POST', body: JSON.stringify(row) });
+    const inserted = Array.isArray(result) ? result[0] : result;
+    posts.push(normalizePost(inserted || p));
+    sortPosts();
+    setSyncState('ok','Saved ✓');
+    showToast('New post added ✓');
+    render();
+  } catch(e) {
+    setSyncState('error','Insert failed');
+    showToast('Insert failed — check connection', true);
+  }
+}
+
+async function removePost(id) {
+  setSyncState('syncing','Deleting...');
+  try {
+    await sbFetch(`${TABLE}?id=eq.${id}`, { method:'DELETE' });
+    posts = posts.filter(p => p.id !== id);
+    setSyncState('ok','Deleted ✓');
+    showToast('Post deleted');
+    closeDrawer();
+    render();
+  } catch(e) {
+    setSyncState('error','Delete failed');
+    showToast('Delete failed', true);
+  }
+}
+
+// ── STYLING HELPERS ───────────────────────────────────────────
+const PILLAR_STYLE = {
+  'Product Showcase':  { bg:'#ddeeff', fg:'#1a3767' },
+  'Behind the Scenes': { bg:'#fff0e0', fg:'#a04800' },
+  'Fun & Engagement':  { bg:'#e8f5e9', fg:'#2e7d32' },
+  'Education':         { bg:'#f3e8ff', fg:'#6a0dad' },
+  'Client Spotlight':  { bg:'#fff9e0', fg:'#7a5c00' },
+  'Seasonal & Timely': { bg:'#ffe8ea', fg:'#b71c1c' },
+  'TBD':               { bg:'#eeeeee', fg:'#666666' },
+};
+const STATUS_STYLE = {
+  'To Do':      { bg:'#fff8e1', fg:'#e65100' },
+  'In Progress':{ bg:'#e3f2fd', fg:'#0d47a1' },
+  'Scheduled':  { bg:'#e8f5e9', fg:'#1b5e20' },
+  'Posted':     { bg:'#f3e5f5', fg:'#4a148c' },
+  'TBD':        { bg:'#f5f5f5', fg:'#555555' },
+};
+const PLAT_ICON = { 'Instagram + TikTok':'📱','Facebook':'👥','LinkedIn':'💼','X/Twitter':'𝕏' };
+const WEEKS_DATES = { 'Week 1':'May 1–3','Week 2':'May 4–10','Week 3':'May 11–17','Week 4':'May 18–24','Week 5':'May 25–31' };
+const WEEK_CLASS = { 'Week 1':'w1','Week 2':'w2','Week 3':'w3','Week 4':'w4','Week 5':'w5' };
+
+function pillarBadge(p) {
+  const s = PILLAR_STYLE[p] || PILLAR_STYLE['TBD'];
+  return `<span class="pillar-badge" style="background:${s.bg};color:${s.fg}">${p}</span>`;
+}
+function statusBadge(s) {
+  const st = STATUS_STYLE[s] || STATUS_STYLE['TBD'];
+  return `<span class="status-badge" style="background:${st.bg};color:${st.fg}">${s}</span>`;
+}
+function tagHtml(tags) {
+  if (!tags || !tags.length) return '<span class="tag tag-tbd">TBD</span>';
+  return (tags||[]).slice(0,3).map((t,i) => `<span class="tag tag${i}">${t}</span>`).join('');
+}
+function e(s) {
+  if (!s) return '';
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
+// ── FILTER & SEARCH ───────────────────────────────────────────
+function setFilter(type, val, el) {
+  filters[type] = val;
+  document.querySelectorAll(`[data-f="${type}"]`).forEach(c => c.classList.remove('on'));
+  el.classList.add('on');
+  render();
+}
+function doSearch(val) { search = val.toLowerCase(); render(); }
+
+function visible() {
+  return posts.filter(p => {
+    if (filters.platform !== 'all' && p.platform !== filters.platform) return false;
+    if (filters.status !== 'all' && p.status !== filters.status) return false;
+    if (filters.pillar !== 'all' && p.pillar !== filters.pillar) return false;
+    if (search) {
+      const hay = [p.date,p.week,p.theme,(p.tags||[]).join(' '),p.platform,p.pillar,p.hook,p.caption,p.hashtags].join(' ').toLowerCase();
+      if (!hay.includes(search)) return false;
+    }
+    return true;
+  });
+}
+
+// ── RENDER ────────────────────────────────────────────────────
+function renderStats() {
+  const vis = visible();
+  const bySt = {};
+  vis.forEach(p => { bySt[p.status] = (bySt[p.status]||0)+1; });
+  const items = [
+    { lbl:'Showing', num:vis.length, color:'#1a3767' },
+    { lbl:'Total', num:posts.length, color:'#9aa3bb' },
+    'div',
+    ...Object.entries(STATUS_STYLE).map(([s,st]) => ({ lbl:s, num:bySt[s]||0, color:st.fg }))
+  ];
+  document.getElementById('statsBar').innerHTML = items.map(it =>
+    it==='div' ? '<div class="sdiv"></div>' :
+    `<div class="stat"><div class="stat-dot" style="background:${it.color}"></div><span class="stat-lbl">${it.lbl}</span><span class="stat-num">${it.num}</span></div>`
+  ).join('');
+}
+
+function render() {
+  renderStats();
+  const vis = visible();
+  const byWeek = {};
+  const wOrder = ['Week 1','Week 2','Week 3','Week 4','Week 5'];
+  vis.forEach(p => { if (!byWeek[p.week]) byWeek[p.week]=[]; byWeek[p.week].push(p); });
+
+  let html = `<table>
+    <thead><tr>
+      <th class="c-date">Date</th><th class="c-theme">Theme</th><th class="c-tags">Topic Tags</th>
+      <th class="c-plat">Platform</th><th class="c-pillar">Content Pillar</th>
+      <th class="c-format">Format</th><th class="c-hook">Caption Hook</th>
+      <th class="c-cap">Full Caption</th><th class="c-hash">Hashtags</th>
+      <th class="c-cta">CTA</th><th class="c-visual">Visual Direction</th>
+      <th class="c-notes">Copy Notes</th><th class="c-status">Status</th>
+    </tr></thead><tbody>`;
+
+  wOrder.forEach(week => {
+    if (!byWeek[week]) return;
+    const wp = byWeek[week];
+    const wc = WEEK_CLASS[week]||'w1';
+    html += `<tr class="week-hdr"><td colspan="13">
+      <div class="week-hdr-inner">
+        <span class="wh-label">${week}</span>
+        <span class="wh-dates">${WEEKS_DATES[week]||''}</span>
+        <span class="wh-count">${wp.length} post${wp.length!==1?'s':''}</span>
+      </div></td></tr>`;
+    wp.forEach(p => {
+      const sel = selectedId === p.id ? ' selected' : '';
+      html += `<tr class="data-row ${wc}${sel}" onclick="selectRow(${p.id})">
+        <td class="c-date"><div class="cd"><div>${e(p.date)}</div><div class="wk">${e(p.week)}</div></div></td>
+        <td class="c-theme"><div class="cth">${e(p.theme)}</div></td>
+        <td class="c-tags"><div class="tags-cell">${tagHtml(p.tags)}</div></td>
+        <td class="c-plat"><div class="plat-cell"><span class="pi">${PLAT_ICON[p.platform]||'📌'}</span><span>${e(p.platform)}</span></div></td>
+        <td class="c-pillar">${pillarBadge(p.pillar)}</td>
+        <td class="c-format"><div class="fmt-cell">${e(p.format)}</div></td>
+        <td class="c-hook"><div class="hook-cell">${e(p.hook)}</div></td>
+        <td class="c-cap"><div class="cap-cell">${e(p.caption)}</div></td>
+        <td class="c-hash"><div class="hash-cell">${e(p.hashtags)}</div></td>
+        <td class="c-cta"><div class="cta-cell">${e(p.cta)}</div></td>
+        <td class="c-visual"><div class="notes-cell">${e(p.visual)}</div></td>
+        <td class="c-notes"><div class="notes-cell">${e(p.notes)}</div></td>
+        <td class="c-status">${statusBadge(p.status)}</td>
+      </tr>`;
+    });
+  });
+  html += '</tbody></table>';
+  document.getElementById('tblWrap').innerHTML = html;
+}
+
+// ── DRAWER ────────────────────────────────────────────────────
+function selectRow(id) {
+  selectedId = id;
+  drawerPost = JSON.parse(JSON.stringify(posts.find(p => p.id === id)));
+  if (!drawerPost) return;
+  openDrawer();
+  render();
+}
+
+function openDrawer() {
+  document.getElementById('drawer').classList.add('open');
+  document.getElementById('drawerTitle').textContent = `Edit — ${drawerPost.date}`;
+  buildDrawer();
+}
+
+function closeDrawer() {
+  document.getElementById('drawer').classList.remove('open');
+  selectedId = null;
+  drawerPost = null;
+  render();
+}
+
+function buildDrawer() {
+  const p = drawerPost;
+  const statusOpts = ['To Do','In Progress','Scheduled','Posted','TBD'].map(s =>
+    `<option${p.status===s?' selected':''}>${s}</option>`).join('');
+  const pillarOpts = ['Product Showcase','Behind the Scenes','Fun & Engagement','Education','Client Spotlight','Seasonal & Timely','TBD'].map(s =>
+    `<option${p.pillar===s?' selected':''}>${s}</option>`).join('');
+  const platOpts = ['Instagram + TikTok','Facebook','LinkedIn','X/Twitter'].map(s =>
+    `<option${p.platform===s?' selected':''}>${s}</option>`).join('');
+  const weekOpts = ['Week 1','Week 2','Week 3','Week 4','Week 5'].map(s =>
+    `<option${p.week===s?' selected':''}>${s}</option>`).join('');
+
+  document.getElementById('drawerBody').innerHTML = `
+    <div class="drawer-section">
+      <div class="drawer-section-title">Post Details</div>
+      <div class="drow-2col">
+        <div class="drow"><label>Date</label><input id="d-date" value="${e(p.date||'')}"></div>
+        <div class="drow"><label>Week</label><select id="d-week">${weekOpts}</select></div>
+      </div>
+      <div class="drow"><label>Theme</label><input id="d-theme" value="${e(p.theme||'')}"></div>
+      <div class="drow-2col">
+        <div class="drow"><label>Platform</label><select id="d-platform">${platOpts}</select></div>
+        <div class="drow"><label>Status</label><select id="d-status">${statusOpts}</select></div>
+      </div>
+      <div class="drow"><label>Content Pillar</label><select id="d-pillar">${pillarOpts}</select></div>
+      <div class="drow"><label>Topic Tags (comma-separated, max 3)</label><input id="d-tags" value="${e((p.tags||[]).join(', '))}"></div>
+    </div>
+    <div class="drawer-section">
+      <div class="drawer-section-title">Content</div>
+      <div class="drow"><label>Format</label><input id="d-format" value="${e(p.format||'')}"></div>
+      <div class="drow"><label>Caption Hook</label><input id="d-hook" value="${e(p.hook||'')}"></div>
+      <div class="drow"><label>Full Caption</label><textarea id="d-caption">${e(p.caption||'')}</textarea></div>
+    </div>
+    <div class="drawer-section">
+      <div class="drawer-section-title">Publishing</div>
+      <div class="drow"><label>Hashtags</label><textarea id="d-hashtags" style="min-height:60px">${e(p.hashtags||'')}</textarea></div>
+      <div class="drow"><label>CTA</label><input id="d-cta" value="${e(p.cta||'')}"></div>
+    </div>
+    <div class="drawer-section">
+      <div class="drawer-section-title">Production Notes</div>
+      <div class="drow"><label>Visual Direction</label><textarea id="d-visual">${e(p.visual||'')}</textarea></div>
+      <div class="drow"><label>Copy Notes</label><textarea id="d-notes">${e(p.notes||'')}</textarea></div>
+    </div>`;
+}
+
+function saveDrawer() {
+  if (!drawerPost) return;
+  const tagsRaw = document.getElementById('d-tags').value.split(',').map(t=>t.trim()).filter(Boolean).slice(0,3);
+  const fields = {
+    date:      document.getElementById('d-date').value.trim(),
+    week:      document.getElementById('d-week').value,
+    theme:     document.getElementById('d-theme').value.trim(),
+    platform:  document.getElementById('d-platform').value,
+    status:    document.getElementById('d-status').value,
+    pillar:    document.getElementById('d-pillar').value,
+    tags:      tagsRaw,
+    format:    document.getElementById('d-format').value.trim(),
+    hook:      document.getElementById('d-hook').value.trim(),
+    caption:   document.getElementById('d-caption').value.trim(),
+    hashtags:  document.getElementById('d-hashtags').value.trim(),
+    cta:       document.getElementById('d-cta').value.trim(),
+    visual:    document.getElementById('d-visual').value.trim(),
+    notes:     document.getElementById('d-notes').value.trim(),
+  };
+  updatePost(drawerPost.id, fields);
+  Object.assign(drawerPost, fields);
+  document.getElementById('drawerTitle').textContent = `Edit — ${fields.date}`;
+  render();
+}
+
+function deletePost() {
+  if (!drawerPost) return;
+  if (!confirm(`Delete this post?\n"${drawerPost.hook}"\n\nThis cannot be undone.`)) return;
+  removePost(drawerPost.id);
+}
+
+// ── ADD MODAL ─────────────────────────────────────────────────
+function openAddModal() { document.getElementById('addOverlay').classList.add('open'); }
+function closeAddModal() { document.getElementById('addOverlay').classList.remove('open'); }
+
+function submitAdd() {
+  const gv = id => document.getElementById(id).value.trim();
+  const tagsRaw = gv('m-tags').split(',').map(t=>t.trim()).filter(Boolean).slice(0,3);
+  const newPost = {
+    id: Date.now(),
+    date: gv('m-date'),
+    week: gv('m-week'),
+    theme: gv('m-theme') || 'New Post',
+    tags: tagsRaw.length ? tagsRaw : ['New','Post','TBD'],
+    platform: gv('m-platform') || 'Instagram + TikTok',
+    pillar: gv('m-pillar') || 'TBD',
+    format: gv('m-format'),
+    hook: gv('m-hook'),
+    caption: gv('m-caption'),
+    hashtags: gv('m-hashtags') || '#EmpirePromotionalProducts',
+    cta: gv('m-cta') || 'EmpirePromos.com',
+    visual: gv('m-visual'),
+    notes: gv('m-notes'),
+    status: gv('m-status') || 'To Do',
+  };
+  insertPost(newPost);
+  closeAddModal();
+  ['m-date','m-theme','m-tags','m-format','m-hook','m-caption','m-hashtags','m-cta','m-visual','m-notes'].forEach(id => document.getElementById(id).value='');
+}
+
+// ── UTILS ─────────────────────────────────────────────────────
+function sortPosts() {
+  const wo = ['Week 1','Week 2','Week 3','Week 4','Week 5'];
+  posts.sort((a,b) => wo.indexOf(a.week) - wo.indexOf(b.week) || a.id - b.id);
+}
+
+function setSyncState(state, label) {
+  const dot = document.getElementById('syncDot');
+  const lbl = document.getElementById('syncLabel');
+  dot.className = 'sync-dot' + (state==='syncing' ? ' syncing' : state==='error' ? ' error' : '');
+  lbl.textContent = label;
+}
+
+let toastTimer;
+function showToast(msg, isErr=false) {
+  const t = document.getElementById('toast');
+  const m = document.getElementById('toastMsg');
+  m.textContent = msg;
+  t.className = 'toast show' + (isErr ? ' err' : '');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => t.classList.remove('show'), 3000);
+}
+
+// ── DEFAULT DATA ──────────────────────────────────────────────
+const DEFAULT_POSTS = [
+  {id:1,date:"Fri, May 1",week:"Week 1",theme:"Drinkware Poll",tags:["Drinkware","Poll","Engagement"],platform:"Instagram + TikTok",pillar:"Fun & Engagement",format:"IG: Poll Graphic  |  TT: BTS Video",hook:"This or that: tumblers vs. water bottles? 🤔  //  Watch us kit 500 boxes in one day 📦",caption:"IG: The eternal merch debate. Drop your vote below ⬇️ Either way — we've got both, fully custom, starting at 1 piece. EmpirePromos.com\n\nTT: This is what kitting & fulfillment looks like at scale. One order, 500 boxes, fully branded. EmpirePromos.com",hashtags:"#EmpirePromotionalProducts #BrandedMerch #CustomDrinkware #CompanySwag #PromotionalProducts #Kitting",cta:"IG: Drop your vote below  |  TT: EmpirePromos.com",visual:"IG: Split graphic — tumbler vs. water bottle, branded. Navy bg, vote prompt in orange.\nTT: Time-lapse kitting line in action. Branded end card.",notes:"IG is engagement-first. TT is BTS/scale.",status:"To Do"},
+  {id:2,date:"Fri, May 1",week:"Week 1",theme:"TBD Product",tags:["TBD","Product","General"],platform:"Instagram + TikTok",pillar:"TBD",format:"IG: Feed  |  TT: Video",hook:"TBD — General Product Post",caption:"TBD",hashtags:"#EmpirePromotionalProducts #PromotionalProducts #BrandedMerch",cta:"EmpirePromos.com",visual:"TBD — product to be selected",notes:"Reserved general product post — Week 1.",status:"TBD"},
+  {id:3,date:"Sat, May 2",week:"Week 1",theme:"TBD Product",tags:["TBD","Product","General"],platform:"Facebook",pillar:"TBD",format:"Photo Post",hook:"TBD — General Product Post",caption:"TBD",hashtags:"#EmpirePromotionalProducts #PromotionalProducts #BrandedMerch",cta:"EmpirePromos.com",visual:"TBD — product to be selected",notes:"Reserved general product post — Week 1.",status:"TBD"},
+  {id:4,date:"Sat, May 2",week:"Week 1",theme:"Merch Recall Stat",tags:["Education","Stats","ROI"],platform:"Facebook",pillar:"Education",format:"Stat Graphic",hook:"85% of people remember a brand after receiving promo merch.",caption:"85% of people can recall the advertiser on a promotional product they received in the last 2 years. That's not a coincidence — that's your brand working for you 24/7. EmpirePromos.com",hashtags:"#EmpirePromotionalProducts #PromotionalProducts #BrandAwareness #MarketingTips #BrandedMerch",cta:"EmpirePromos.com",visual:"Bold stat graphic — large '85%' in orange on navy bg.",notes:"Lead with the stat. Facebook responds well to data.",status:"To Do"},
+  {id:5,date:"Sat, May 2",week:"Week 1",theme:"Merch ROI for CMOs",tags:["ROI","CMO","Decision-Maker"],platform:"LinkedIn",pillar:"Education",format:"Insight Post",hook:"Most CMOs underestimate the recall rate of branded merchandise. The data says otherwise.",caption:"85% of consumers recall the brand on a promotional product they received in the last 2 years.\n\nFor comparison: average display ad recall sits below 20%.\n\nBranded merchandise creates physical touchpoints that digital channels can't replicate.\n\nFor marketing and procurement leaders: branded merchandise isn't a budget line to cut. It's one of the highest-retention brand investments available.\n\nEmpirePromos.com",hashtags:"#EmpirePromotionalProducts #BrandStrategy #MarketingROI #CMO #BrandedMerchandise #B2BMarketing",cta:"EmpirePromos.com",visual:"Clean stat comparison graphic — branded merch recall vs. display ad recall.",notes:"Decision-maker framing — CMOs, marketing directors, procurement leads.",status:"To Do"},
+  {id:6,date:"Sun, May 3",week:"Week 1",theme:"Merch Opinion",tags:["Hot Take","Quality","Opinion"],platform:"X/Twitter",pillar:"Fun & Engagement",format:"Text Post",hook:"Hot take: most branded merch is forgettable. Here's how to fix that.",caption:"Hot take: most branded merch is forgettable.\n\nThe fix? Stop ordering what's cheapest and start ordering what people actually want to keep.\n\nEmpirePromos.com",hashtags:"#EmpirePromotionalProducts #BrandedMerch #MarketingTips",cta:"EmpirePromos.com",visual:"Text only.",notes:"Opinionated. Invites a reaction. Don't hedge.",status:"To Do"},
+  {id:7,date:"Tue, May 5",week:"Week 2",theme:"Blank to Branded",tags:["Mockup","Transformation","BTS"],platform:"Instagram + TikTok",pillar:"Behind the Scenes",format:"IG: Reels  |  TT: Video",hook:"From blank to branded — watch the whole thing. 🔥",caption:"IG: Blank product → your logo → out the door. Fast, clean, custom. DM us to get started. EmpirePromos.com\n\nTT: Send us your logo. We'll send back a free mockup — fast. No commitment, no pressure. EmpirePromos.com",hashtags:"#EmpirePromotionalProducts #BehindTheScenes #CustomMerch #BrandedMerch #FreeMockup",cta:"IG: DM us  |  TT: EmpirePromos.com",visual:"IG: Before/after reveal Reel — blank product to branded.\nTT: Mockup creation time-lapse. End on the reveal.",notes:"IG is the polished reveal; TT is the process speed.",status:"To Do"},
+  {id:8,date:"Tue, May 5",week:"Week 2",theme:"Company Stores",tags:["Company Store","Operations","HR"],platform:"LinkedIn",pillar:"Education",format:"Decision-Maker Post",hook:"If your team is managing merch requests manually, you're wasting hours your operations team doesn't have.",caption:"Company stores eliminate the operational overhead of branded merchandise management.\n\nThe problems they solve:\n— Marketing fields individual merch requests from 50+ employees\n— HR keeps a closet of onboarding kits that's always mis-stocked\n— Multiple locations ordering inconsistently, degrading brand standards\n— Finance can't track or control spend\n\nThe solution: a single branded storefront. Print-on-demand. Zero inventory risk.\n\nEmpire Promos builds and manages company stores for mid-size and enterprise businesses.\n\nEmpirePromos.com",hashtags:"#EmpirePromotionalProducts #CompanyStores #OperationalEfficiency #BrandManagement #B2BMarketing #PrintOnDemand",cta:"EmpirePromos.com",visual:"Clean company store mockup or branded apparel flat lay.",notes:"Target: COOs, Ops Directors, HR leaders, Marketing VPs.",status:"To Do"},
+  {id:9,date:"Wed, May 7",week:"Week 2",theme:"Cost Per Impression",tags:["ROI","Stats","Pens"],platform:"Instagram + TikTok",pillar:"Education",format:"IG: Stat Graphic  |  TT: Guess the Brand",hook:"Your logo on a pen costs less than a click.  //  Guess the brand before we reveal it 👀",caption:"IG: The average cost per impression on a branded promotional product is $0.002. Less than almost any digital ad format — and it sticks around for months. EmpirePromos.com\n\nTT: Can you figure it out from the merch alone? Drop your guess ⬇️",hashtags:"#EmpirePromotionalProducts #MarketingROI #BrandedMerch #BrandAwareness #GuessTheBrand",cta:"IG: EmpirePromos.com  |  TT: Drop your guess",visual:"IG: Bold '$0.002' stat graphic. Navy bg, orange text.\nTT: Branded product close-up — no logo visible. Reveal at the end.",notes:"IG is educational; TT is engagement-first.",status:"To Do"},
+  {id:10,date:"Thu, May 7",week:"Week 2",theme:"Client Kit",tags:["Client","Kitting","Social Proof"],platform:"Facebook",pillar:"Client Spotlight",format:"Photo Post",hook:"Look what this team did with their custom kit. 🔥",caption:"When a client sends back photos like this, we know we did something right. Custom kitted boxes, fully branded, shipped direct. This is what Empire Promos does for businesses like yours. EmpirePromos.com",hashtags:"#EmpirePromotionalProducts #ClientSpotlight #KittingAndFulfillment #BrandedMerch #CompanySwag",cta:"EmpirePromos.com",visual:"Client product/kit photo. Real, not stock.",notes:"Get client approval before posting.",status:"To Do"},
+  {id:11,date:"Fri, May 8",week:"Week 2",theme:"Summer Products",tags:["Summer","Sunglasses","Hats"],platform:"Instagram + TikTok",pillar:"Product Showcase",format:"IG: Carousel  |  TT: Product Video",hook:"Summer merch just dropped. 😎 Sunglasses, hats, lip balm & more.",caption:"IG: Your brand. Ready for summer. Custom sunglasses, branded hats, lip balm, koozies — all starting at 1 piece. EmpirePromos.com\n\nTT: Sunglasses. Hats. Lip balm. Koozies. All custom. Starting at 1 piece. EmpirePromos.com",hashtags:"#EmpirePromotionalProducts #SummerMerch #CustomSunglasses #BrandedHats #LipBalm #PromotionalProducts",cta:"EmpirePromos.com",visual:"IG: Carousel — sunglasses, hat, lip balm, koozie.\nTT: Unbox/reveal of each item. Fun outdoor energy.",notes:"Summer product launch. Each item gets its moment.",status:"To Do"},
+  {id:12,date:"Fri, May 8",week:"Week 2",theme:"Summer Events",tags:["Summer","Events","Outdoor"],platform:"Facebook",pillar:"Product Showcase",format:"Carousel",hook:"Summer event season is here — here's the branded gear to match.",caption:"Outdoor events. Company picnics. Trade shows. Summer is packed with brand moments — and Empire Promos has the merch to fill them. Custom sunglasses, branded hats, lip balm, koozies, and more. Starting at 1 piece. EmpirePromos.com",hashtags:"#EmpirePromotionalProducts #SummerMerch #BrandedGear #CustomSunglasses #EventMerch",cta:"EmpirePromos.com",visual:"Summer product carousel — sunglasses, hat, lip balm, koozie.",notes:"Frame around summer events.",status:"To Do"},
+  {id:13,date:"Fri, May 8",week:"Week 2",theme:"Summer ROI",tags:["Summer","ROI","Events"],platform:"LinkedIn",pillar:"Product Showcase",format:"Decision-Maker Post",hook:"Summer is the highest-ROI season for branded merchandise.",caption:"Q2 and Q3 are peak seasons for branded merchandise — the businesses getting the most out of it plan ahead.\n\nTop summer moments:\n— Company offsites and team events\n— Client appreciation programs\n— Summer trade shows and outdoor activations\n\nProducts that perform best: custom sunglasses, branded hats, lip balm, koozies — items people use outdoors, in public.\n\nEvery use is a brand impression. Every impression compounds.\n\nEmpire Promos. No minimums. No middleman.\n\nEmpirePromos.com",hashtags:"#EmpirePromotionalProducts #SummerEvents #BrandedMerchandise #MarketingROI #ProcurementLeaders",cta:"EmpirePromos.com",visual:"Professional summer product flat lay.",notes:"Marketing VPs, procurement directors, event planners.",status:"To Do"},
+  {id:14,date:"Fri, May 8",week:"Week 2",theme:"Summer Products",tags:["Summer","Sunglasses","Koozies"],platform:"X/Twitter",pillar:"Product Showcase",format:"Text Post",hook:"Custom sunglasses. Branded hats. Lip balm. Koozies. Summer merch that gets used.",caption:"Custom sunglasses.\nBranded hats.\nLip balm.\nKoozies.\n\nSummer merch that actually gets used.\n\nEmpirePromos.com",hashtags:"#EmpirePromotionalProducts #SummerMerch #BrandedGear",cta:"EmpirePromos.com",visual:"Text only — or attach summer product photo.",notes:"List format. Each item on its own line.",status:"To Do"},
+  {id:15,date:"Sat, May 9",week:"Week 2",theme:"Mother's Day Gifts",tags:["Mother's Day","Gifts","Drinkware"],platform:"Instagram + TikTok",pillar:"Seasonal & Timely",format:"IG: Carousel  |  TT: Video",hook:"Mother's Day gift inspo — branded and personal 💐",caption:"IG: Custom merch makes it personal. From tote bags to drinkware to apparel — starting at 1 piece. EmpirePromos.com\n\nTT: Mother's Day is tomorrow. Here's what we'd gift.",hashtags:"#EmpirePromotionalProducts #MothersDay #CustomGifts #BrandedMerch #PersonalizedGifts",cta:"EmpirePromos.com",visual:"IG: Carousel of giftable branded products. Warm lifestyle feel.\nTT: Quick product picks — tote, tumbler, apparel.",notes:"Mother's Day May 10 — posts day before. Keep it warm.",status:"To Do"},
+  {id:16,date:"Sat, May 9",week:"Week 2",theme:"Mother's Day",tags:["Mother's Day","Urgency","CTA"],platform:"X/Twitter",pillar:"Seasonal & Timely",format:"Text Post",hook:"Mother's Day is tomorrow. Custom merch ships fast. Just saying. 👀",caption:"Mother's Day is tomorrow.\nCustom merch ships fast.\nJust saying. 👀\n\nEmpirePromos.com",hashtags:"#EmpirePromotionalProducts #MothersDay #CustomGifts",cta:"EmpirePromos.com",visual:"Text only.",notes:"Timely and cheeky. Short.",status:"To Do"},
+  {id:17,date:"Tue, May 12",week:"Week 3",theme:"Memorial Day Preview",tags:["Memorial Day","Summer","Outdoor"],platform:"Instagram + TikTok",pillar:"Seasonal & Timely",format:"IG: Feed Graphic  |  TT: Video",hook:"Memorial Day is two weeks out. Is your brand ready? ☀️",caption:"IG: Outdoor events. Company BBQs. Summer kickoffs. Start planning your branded gear now — sunglasses, hats, koozies, and more. EmpirePromos.com\n\nTT: Memorial Day is coming. Here's the merch your brand needs for the long weekend.",hashtags:"#EmpirePromotionalProducts #MemorialDay #SummerMerch #BrandedGear #CustomSunglasses",cta:"EmpirePromos.com",visual:"IG: Summer product collage. Bright outdoor feel.\nTT: Product reveal — sunglasses, hat, koozie, lip balm.",notes:"2-week lead-up to Memorial Day. Plant the seed early.",status:"To Do"},
+  {id:18,date:"Tue, May 12",week:"Week 3",theme:"Onboarding Kits",tags:["Onboarding","HR","Retention"],platform:"LinkedIn",pillar:"Client Spotlight",format:"Decision-Maker Post",hook:"The first day of employment is the highest-stakes brand touchpoint most companies overlook.",caption:"A new hire's first day shapes their perception of your company for months.\n\nThe ROI case:\n— Employees who feel valued from day one are 2x more likely to stay past year one\n— A physical, branded kit communicates culture before a single meeting\n— Consistent kitting across locations ensures every hire gets the same experience\n\nEmpire Promos designs, assembles, and ships custom onboarding kits on behalf of HR and ops teams. No inventory. No logistics overhead.\n\nEmpirePromos.com",hashtags:"#EmpirePromotionalProducts #EmployeeOnboarding #HRLeaders #TalentRetention #KittingAndFulfillment",cta:"EmpirePromos.com",visual:"Clean onboarding kit flat lay — apparel, drinkware, notebook, branded packaging.",notes:"Target: CHROs, HR Directors, People Ops leaders.",status:"To Do"},
+  {id:19,date:"Wed, May 13",week:"Week 3",theme:"Custom Apparel",tags:["Apparel","Wearable","Quality"],platform:"Facebook",pillar:"Product Showcase",format:"Carousel",hook:"Custom apparel that actually gets worn. Here's how.",caption:"The secret to branded apparel people actually wear? Make it something they'd choose themselves. Empire Promos helps you pick the right styles, fits, and colors for your team. No minimums. Free mockups. EmpirePromos.com",hashtags:"#EmpirePromotionalProducts #CustomApparel #BrandedClothing #CompanySwag",cta:"EmpirePromos.com",visual:"Carousel of wearable branded apparel — hoodies, polos, tees. Lifestyle feel.",notes:"Wearability is the value prop.",status:"To Do"},
+  {id:20,date:"Wed, May 13",week:"Week 3",theme:"13 Months Stat",tags:["ROI","Stats","Longevity"],platform:"X/Twitter",pillar:"Education",format:"Text Post",hook:"The average promo product is kept for 13 months. Your last digital ad lasted 3 seconds.",caption:"The average promo product is kept for 13 months.\nYour last digital ad lasted 3 seconds.\n\nBoth have a place. One sticks around.\n\nEmpirePromos.com",hashtags:"#EmpirePromotionalProducts #BrandedMerch #MarketingROI",cta:"EmpirePromos.com",visual:"Text only.",notes:"Sharp contrast. No fluff.",status:"To Do"},
+  {id:21,date:"Thu, May 14",week:"Week 3",theme:"Company Store Education",tags:["Company Store","POD","Education"],platform:"Instagram + TikTok",pillar:"Education",format:"IG: Infographic Carousel  |  TT: Talking Head",hook:"3 reasons your business needs a company store 🏪",caption:"IG: Tired of fielding merch requests from your team? There's a better way. Swipe to see why a company store changes everything. EmpirePromos.com\n\nTT: Not all promo products are created equal. Here are 3 that people actually keep.",hashtags:"#EmpirePromotionalProducts #CompanyStore #BrandedMerch #PrintOnDemand #MarketingTips",cta:"EmpirePromos.com",visual:"IG: 3-slide carousel — one reason per slide.\nTT: Talking head or text-on-screen. 3 items revealed.",notes:"IG is the system; TT is the product angle.",status:"To Do"},
+  {id:22,date:"Thu, May 14",week:"Week 3",theme:"13 Months Stat",tags:["Stats","Longevity","ROI"],platform:"Facebook",pillar:"Education",format:"Infographic Post",hook:"Did you know? The average promotional product is kept for over a year.",caption:"The average branded promotional product is kept for 13 months. That's 13 months of daily brand impressions — from a single item. Compare that to a digital ad that disappears in seconds. EmpirePromos.com",hashtags:"#EmpirePromotionalProducts #PromotionalProducts #BrandAwareness #MarketingROI",cta:"EmpirePromos.com",visual:"Stat graphic — '13 months' bold. Navy bg, orange accent.",notes:"Comparison to digital ads makes the ROI case.",status:"To Do"},
+  {id:23,date:"Fri, May 15",week:"Week 3",theme:"Graduation Merch",tags:["Graduation","Schools","Apparel"],platform:"Instagram + TikTok",pillar:"Seasonal & Timely",format:"IG: Carousel  |  TT: Video",hook:"Graduation merch that actually gets kept. 🎓",caption:"IG: Custom graduation gifts, team apparel, and school spirit merch — all starting at 1 piece. EmpirePromos.com\n\nTT: Graduation is weeks away. Custom grad tees. Staff appreciation kits. Branded giveaways. We ship fast.",hashtags:"#EmpirePromotionalProducts #GraduationGifts #ClassOf2026 #CustomApparel #SchoolMerch",cta:"EmpirePromos.com",visual:"IG: Carousel — grad tees, tote bags, drinkware, kitted grad gift box.\nTT: Fast-cut product montage.",notes:"Grad season has a hard deadline — urgency is built in.",status:"To Do"},
+  {id:24,date:"Fri, May 15",week:"Week 3",theme:"Graduation Season",tags:["Graduation","Schools","Gifts"],platform:"Facebook",pillar:"Seasonal & Timely",format:"Carousel",hook:"Graduation season is here — custom merch that makes the moment.",caption:"Schools, nonprofits, and organizations — if you've got a graduation or year-end event coming up, Empire Promos has the merch to match. Custom apparel, branded gifts, and print-on-demand storefronts. No minimums. Fast turnaround. EmpirePromos.com",hashtags:"#EmpirePromotionalProducts #GraduationGifts #ClassOf2026 #CustomApparel #SchoolMerch",cta:"EmpirePromos.com",visual:"Product carousel — grad tees, tote bags, custom kits.",notes:"Facebook skews toward school/nonprofit decision-makers.",status:"To Do"},
+  {id:25,date:"Fri, May 15",week:"Week 3",theme:"Graduation Revenue",tags:["Graduation","Nonprofits","Revenue"],platform:"LinkedIn",pillar:"Seasonal & Timely",format:"Decision-Maker Post",hook:"Graduation season represents a significant — and often underutilized — revenue opportunity.",caption:"Every graduation is a brand moment with a captive, emotionally engaged audience.\n\nOrganizations capitalizing on it:\n— Print-on-demand storefronts selling branded apparel to students, alumni, and families\n— Zero-inventory fundraising programs tied to graduation merchandise\n— Staff appreciation kits for faculty and administration\n— Brand equity with graduates who become long-term donors\n\nEmpire Promos builds merchandise programs that generate revenue, not just cost.\n\nNo minimums. No middleman.\n\nEmpirePromos.com",hashtags:"#EmpirePromotionalProducts #GraduationSeason #NonprofitLeaders #EducationLeaders #FundraisingSolutions #PrintOnDemand",cta:"EmpirePromos.com",visual:"Professional product image — branded grad merchandise or POD storefront mockup.",notes:"Target: School Superintendents, Nonprofit EDs, University marketing directors.",status:"To Do"},
+  {id:26,date:"Fri, May 15",week:"Week 3",theme:"Graduation",tags:["Graduation","Tees","Tote Bags"],platform:"X/Twitter",pillar:"Seasonal & Timely",format:"Text Post",hook:"Graduation season reminder: branded merch makes the moment last longer than the diploma ceremony.",caption:"Graduation season reminder: branded merch makes the moment last longer than the diploma ceremony.\n\nCustom tees. Tote bags. Kitted gift boxes. Starting at 1 piece.\n\nEmpirePromos.com",hashtags:"#EmpirePromotionalProducts #GraduationGifts #ClassOf2026",cta:"EmpirePromos.com",visual:"Text only — or attach a graduation product image.",notes:"The diploma line is the hook.",status:"To Do"},
+  {id:27,date:"Sat, May 16",week:"Week 3",theme:"Coffee Mug Humor",tags:["Humor","Mugs","Engagement"],platform:"X/Twitter",pillar:"Fun & Engagement",format:"Text Post",hook:"Name a more iconic duo than a Monday morning and a branded coffee mug.",caption:"Name a more iconic duo than a Monday morning and a branded coffee mug.\n\nWe'll wait.\n\nEmpirePromos.com",hashtags:"#EmpirePromotionalProducts #BrandedMerch #CustomMugs",cta:"EmpirePromos.com",visual:"Text only — or attach branded mug.",notes:"Light and fun. Good weekend post.",status:"To Do"},
+  {id:28,date:"Tue, May 19",week:"Week 4",theme:"Client Kit Results",tags:["Client","Kitting","Results"],platform:"Instagram + TikTok",pillar:"Client Spotlight",format:"IG: Feed Carousel  |  TT: POD Store",hook:"Real brands. Real results. 👊",caption:"IG: We let the work speak for itself. Custom kitted boxes, fully branded, shipped on their behalf. EmpirePromos.com\n\nTT: Look what this client built with their print-on-demand store. A full branded online store — no inventory, no upfront cost.",hashtags:"#EmpirePromotionalProducts #ClientSpotlight #BrandedMerch #KittingAndFulfillment #PrintOnDemand",cta:"EmpirePromos.com",visual:"IG: Client order photos — product flat lay, branded packaging.\nTT: Screen record of company store + physical products.",notes:"Get client approval before publishing.",status:"To Do"},
+  {id:29,date:"Tue, May 19",week:"Week 4",theme:"Kitting Cost Savings",tags:["Kitting","Operations","Cost"],platform:"LinkedIn",pillar:"Product Showcase",format:"Decision-Maker Post",hook:"Kitting and fulfillment is one of the highest-value, lowest-visibility services in branded merchandise.",caption:"Most companies are unknowingly absorbing the cost of kitting in-house.\n\nHidden expenses:\n— Staff time sourcing, receiving, and organizing products\n— Assembly labor for custom kits\n— Storage space for pre-built kits\n— Shipping coordination across multiple vendors\n\nWith Empire Promos:\n— You approve the kit design\n— We source, assemble, quality-check, and ship on your behalf\n— Individual or bulk ship to any address, on your timeline\n\nEmpirePromos.com",hashtags:"#EmpirePromotionalProducts #KittingAndFulfillment #SupplyChain #OperationalEfficiency #ProcurementLeaders",cta:"EmpirePromos.com",visual:"Clean kitting operation photo or finished kit flat lay.",notes:"Target: COOs, Procurement Directors, Operations VPs.",status:"To Do"},
+  {id:30,date:"Wed, May 20",week:"Week 4",theme:"Best Merch Question",tags:["Engagement","Question","Community"],platform:"LinkedIn",pillar:"Fun & Engagement",format:"Decision-Maker Post",hook:"What's the best branded merchandise your company has ever given out?",caption:"The answers are always revealing.\n\nThe best ones are never the cheapest. They're the ones that were thoughtful — the right product for the right audience at the right moment.\n\nA software company that gave custom AirPod cases at their user conference. A financial services firm that sent leather card holders to new clients. A gym chain that gave branded gym bags to every new member.\n\nWhat do they have in common? The merchandise reinforced the brand promise.\n\nThat's the standard Empire Promos helps you hit.\n\nDrop your answer below.\n\nEmpirePromos.com",hashtags:"#EmpirePromotionalProducts #BrandedMerchandise #MarketingStrategy #B2BMarketing",cta:"Drop your answer below",visual:"Simple branded product image or text-only post.",notes:"Engagement framed as thought leadership.",status:"To Do"},
+  {id:31,date:"Wed, May 20",week:"Week 4",theme:"Trade Show Opinion",tags:["Trade Show","Opinion","Humor"],platform:"X/Twitter",pillar:"Fun & Engagement",format:"Text Post",hook:"Unpopular opinion: the free pen from a trade show booth is doing more for that brand than their banner ad.",caption:"Unpopular opinion: the free pen from a trade show booth is doing more for that brand than their banner ad.\n\nChange my mind.\n\nEmpirePromos.com",hashtags:"#EmpirePromotionalProducts #BrandedMerch #TradeShow #MarketingTips",cta:"EmpirePromos.com",visual:"Text only.",notes:"'Change my mind' is the hook.",status:"To Do"},
+  {id:32,date:"Thu, May 21",week:"Week 4",theme:"Brand Identity Poll",tags:["Engagement","Poll","Brand"],platform:"Facebook",pillar:"Fun & Engagement",format:"Engagement Post",hook:"Which merch item best represents your brand? Tell us below 👇",caption:"Every brand has a product that fits them perfectly. A law firm might say a leather notebook. A gym might say a branded water bottle. A restaurant might say custom staff polos. What's yours? Drop it in the comments. EmpirePromos.com",hashtags:"#EmpirePromotionalProducts #BrandedMerch #CompanySwag #BrandIdentity",cta:"Drop it in the comments",visual:"Collage of 4–6 product types. Engagement prompt overlay.",notes:"Community question. Examples help people respond.",status:"To Do"},
+  {id:33,date:"Fri, May 22",week:"Week 4",theme:"Memorial Day Gear",tags:["Memorial Day","Outdoor","Sunglasses"],platform:"Instagram + TikTok",pillar:"Seasonal & Timely",format:"IG: Feed Graphic + Stories  |  TT: Product Reveal",hook:"Memorial Day weekend merch — made for the outdoors. ☀️",caption:"IG: Long weekend plans need long-lasting branded gear. Custom sunglasses, hats, koozies, and more — all starting at 1 piece. EmpirePromos.com\n\nTT: Memorial Day weekend merch check ✅ Sunglasses. Hats. Koozies. Lip balm. Your brand on all of it.",hashtags:"#EmpirePromotionalProducts #MemorialDay #SummerMerch #CustomSunglasses #BrandedHats",cta:"EmpirePromos.com",visual:"IG: Bright outdoor product collage — sunglasses, hats, koozies, lip balm.\nTT: Fast product reveal — pick up each item one by one.",notes:"Memorial Day is May 25 — 3 days out. Push hard.",status:"To Do"},
+  {id:34,date:"Fri, May 22",week:"Week 4",theme:"Memorial Day Events",tags:["Memorial Day","Events","Summer"],platform:"Facebook",pillar:"Seasonal & Timely",format:"Single Image",hook:"Memorial Day weekend is almost here — is your brand ready for summer?",caption:"Whether you're gearing up for outdoor events, company outings, or summer trade shows — Empire Promos has the branded merchandise to match. Custom sunglasses, hats, koozies, lip balm, and more. No minimums. Fast turnaround. EmpirePromos.com",hashtags:"#EmpirePromotionalProducts #MemorialDay #SummerMerch #CustomSunglasses",cta:"EmpirePromos.com",visual:"Summer product flat lay — sunglasses, hat, koozie, lip balm.",notes:"Facebook B2B — frame around events and outings.",status:"To Do"},
+  {id:35,date:"Fri, May 22",week:"Week 4",theme:"Memorial Day Q3 Planning",tags:["Memorial Day","Q3","Planning"],platform:"LinkedIn",pillar:"Seasonal & Timely",format:"Decision-Maker Post",hook:"Memorial Day marks the start of Q3 planning season. Plan now or pay rush premiums later.",caption:"The businesses that get the best results from summer branded merchandise plan before the season hits.\n\nWhy it matters:\n— Lead times on custom products increase significantly in peak season\n— Last-minute orders mean paying rush premiums or accepting lower quality\n— Event merchandise requires time for proofing, production, and delivery\n\nSmart Q3 planning:\n— Lock in apparel programs for company events now\n— Source custom outdoor merchandise before the summer spike\n— Build or refresh your company store ahead of onboarding season\n\nEmpirePromos.com",hashtags:"#EmpirePromotionalProducts #MemorialDay #Q3Planning #CorporateEvents #ProcurementLeaders #BrandedMerchandise",cta:"EmpirePromos.com",visual:"Professional outdoor event or product image.",notes:"Target: Marketing Directors, Procurement VPs, Event Planners.",status:"To Do"},
+  {id:36,date:"Fri, May 22",week:"Week 4",theme:"Memorial Day",tags:["Memorial Day","Weekend","Summer"],platform:"X/Twitter",pillar:"Seasonal & Timely",format:"Text Post",hook:"Memorial Day weekend is here. Your brand should be too.",caption:"Memorial Day weekend is here.\nYour brand should be too.\n\nCustom sunglasses, hats, koozies — starting at 1 piece.\n\nEmpirePromos.com",hashtags:"#EmpirePromotionalProducts #MemorialDay #SummerMerch",cta:"EmpirePromos.com",visual:"Text only — or attach summer product photo.",notes:"Short and punchy.",status:"To Do"},
+  {id:37,date:"Sat, May 23",week:"Week 4",theme:"TBD Product",tags:["TBD","Product","General"],platform:"Instagram + TikTok",pillar:"TBD",format:"IG: Feed  |  TT: Video",hook:"TBD — General Product Post",caption:"TBD",hashtags:"#EmpirePromotionalProducts #PromotionalProducts #BrandedMerch",cta:"EmpirePromos.com",visual:"TBD — product to be selected",notes:"Reserved for general product post.",status:"TBD"},
+  {id:38,date:"Sat, May 23",week:"Week 4",theme:"TBD Product",tags:["TBD","Product","General"],platform:"X/Twitter",pillar:"TBD",format:"Text Post",hook:"TBD — General Product Post",caption:"TBD",hashtags:"#EmpirePromotionalProducts #BrandedMerch",cta:"EmpirePromos.com",visual:"TBD — product to be selected",notes:"Reserved for general product post.",status:"TBD"},
+  {id:39,date:"Tue, May 26",week:"Week 5",theme:"Summer Ready",tags:["Summer","Trade Shows","Apparel"],platform:"Instagram + TikTok",pillar:"Seasonal & Timely",format:"IG: Feed Graphic  |  TT: Summer Montage",hook:"Summer's here. Is your brand ready? ☀️",caption:"IG: Trade show season. Outdoor events. Summer staff apparel. Whatever's on your calendar — we've got the merch to match. No minimums. Fast turnaround. EmpirePromos.com\n\nTT: Here's everything your brand needs for summer. Apparel. Drinkware. Outdoor gear. All custom. All starting at 1 piece.",hashtags:"#EmpirePromotionalProducts #SummerMerch #BrandedMerch #TradeShowSeason #CustomApparel",cta:"EmpirePromos.com",visual:"IG: Bright summer product collage.\nTT: Fast product montage. High energy. Branded end card.",notes:"Seasonal pivot to summer. Lead with occasions, not products.",status:"To Do"},
+  {id:40,date:"Tue, May 26",week:"Week 5",theme:"Brand Strategy",tags:["Brand Strategy","Q3","Investment"],platform:"LinkedIn",pillar:"Seasonal & Timely",format:"Decision-Maker Post",hook:"The companies outperforming on brand visibility this summer treat branded merchandise as a strategic channel — not a line item to minimize.",caption:"Q3 is the highest-opportunity season for brand impressions through physical merchandise.\n\nThe strategic difference between companies that capture this and those that don't:\n— Proactive planning vs. reactive ordering\n— A vendor with direct manufacturing vs. a distributor markup chain\n— A scalable program vs. one-off orders\n\nEmpire Promos partners with marketing and procurement leaders to build Q3 merchandise programs that drive real brand ROI.\n\nEmpirePromos.com",hashtags:"#EmpirePromotionalProducts #BrandStrategy #Q3Marketing #BrandedMerchandise #MarketingROI #CMO",cta:"EmpirePromos.com",visual:"Clean seasonal graphic or professional outdoor/event product image.",notes:"Target: CMOs, Marketing Directors, Brand Managers.",status:"To Do"},
+  {id:41,date:"Wed, May 27",week:"Week 5",theme:"Client Order",tags:["Client","Kitting","BTS"],platform:"Facebook",pillar:"Client Spotlight",format:"Photo Post",hook:"Another order out the door. Another brand in the world.",caption:"Every order that ships from Empire Promos puts a brand out into the world. Custom kitted boxes, shipped on their behalf. Next week — it could be yours. EmpirePromos.com",hashtags:"#EmpirePromotionalProducts #ClientSpotlight #BrandedMerch #KittingAndFulfillment",cta:"EmpirePromos.com",visual:"Finished order photo — boxes, product, branded packaging.",notes:"Get client approval. Soft 'next could be yours' CTA.",status:"To Do"},
+  {id:42,date:"Wed, May 27",week:"Week 5",theme:"Middleman Problem",tags:["No Middleman","Pricing","Supply Chain"],platform:"LinkedIn",pillar:"Education",format:"Decision-Maker Post",hook:"The promotional products industry has a middleman problem. Most businesses are paying for it without knowing it.",caption:"Traditional supply chain:\nYour company → Distributor (markup) → Decorator (markup) → Manufacturer\n\nEach layer adds margin. You've paid 40–60% above true cost of goods.\n\nEmpire Promos:\nYour company → Empire Promos → Manufacturer\n\nNo distributor. No middleman. Direct-to-brand pricing.\n\nA company spending $50,000 annually on branded merchandise is likely paying $20,000–$30,000 in distributor markup they don't see on any invoice.\n\nEmpirePromos.com",hashtags:"#EmpirePromotionalProducts #ProcurementLeaders #SupplyChain #BrandedMerchandise #CostReduction #DirectPricing",cta:"EmpirePromos.com",visual:"Clean infographic — traditional supply chain vs. Empire Promos model.",notes:"Target: CPOs, Procurement Directors, CFOs. The $20-30K number makes it tangible.",status:"To Do"},
+  {id:43,date:"Wed, May 27",week:"Week 5",theme:"Shipping BTS",tags:["BTS","Shipping","Brand"],platform:"X/Twitter",pillar:"Behind the Scenes",format:"Text Post",hook:"Every order that ships from our facility puts a brand out into the world. That never gets old.",caption:"Every order that ships from our facility puts a brand out into the world.\n\nThat never gets old.\n\nEmpirePromos.com",hashtags:"#EmpirePromotionalProducts #BrandedMerch #BehindTheScenes",cta:"EmpirePromos.com",visual:"Text only — or attach shipping/warehouse photo.",notes:"Simple and genuine. Brand voice moment.",status:"To Do"},
+  {id:44,date:"Thu, May 28",week:"Week 5",theme:"TBD Product",tags:["TBD","Product","General"],platform:"Instagram + TikTok",pillar:"TBD",format:"IG: Feed  |  TT: Video",hook:"TBD — General Product Post",caption:"TBD",hashtags:"#EmpirePromotionalProducts #BrandedMerch #CustomMerch",cta:"EmpirePromos.com",visual:"TBD — product to be selected",notes:"Reserved for general product post.",status:"TBD"},
+  {id:45,date:"Thu, May 28",week:"Week 5",theme:"TBD Product",tags:["TBD","Product","General"],platform:"Facebook",pillar:"TBD",format:"Photo Post",hook:"TBD — General Product Post",caption:"TBD",hashtags:"#EmpirePromotionalProducts #PromotionalProducts #BrandedMerch",cta:"EmpirePromos.com",visual:"TBD — product to be selected",notes:"Reserved for general product post.",status:"TBD"},
+  {id:46,date:"Sat, May 30",week:"Week 5",theme:"Brand Colors",tags:["Engagement","Mockup","Community"],platform:"Instagram + TikTok",pillar:"Fun & Engagement",format:"IG: Engagement Post  |  TT: Interactive Video",hook:"Drop your brand colors in the comments — we'll design something 🎨",caption:"IG: Tell us your brand colors and we'll mock something up right here in the comments. EmpirePromos.com\n\nTT: What merch would YOU put your brand on? Drop it in the comments and we'll make it happen.",hashtags:"#EmpirePromotionalProducts #BrandedMerch #FreeMockup #CustomMerch #BrandColors",cta:"Drop your brand colors below",visual:"IG: Colorful brand palette graphic.\nTT: Fun, casual energy — invite interaction.",notes:"High-engagement format. Follow through in comments.",status:"To Do"},
+  {id:47,date:"Sat, May 30",week:"Week 5",theme:"TBD Product",tags:["TBD","Product","General"],platform:"X/Twitter",pillar:"TBD",format:"Text Post",hook:"TBD — General Product Post",caption:"TBD",hashtags:"#EmpirePromotionalProducts #BrandedMerch",cta:"EmpirePromos.com",visual:"TBD — product to be selected",notes:"Reserved for general product post.",status:"TBD"},
+];
+
+// ── INIT ──────────────────────────────────────────────────────
+loadPosts();
+</script>
+</body>
+</html>
