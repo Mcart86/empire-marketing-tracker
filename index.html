@@ -77,11 +77,11 @@ thead th:last-child{border-right:none;}
  
 /* Date group row */
 tr.date-row td{padding:0;border-bottom:2px solid var(--border-dark);}
-tr.date-row.w1 td{background:#ffffff;}
-tr.date-row.w2 td{background:#f5f7fb;}
-tr.date-row.w3 td{background:#ffffff;}
-tr.date-row.w4 td{background:#f5f7fb;}
-tr.date-row.w5 td{background:#ffffff;}
+tr.date-row.w1 td, tr.date-row.w1 .date-cell{background:#ffffff;}
+tr.date-row.w2 td, tr.date-row.w2 .date-cell{background:#eef0f6;}
+tr.date-row.w3 td, tr.date-row.w3 .date-cell{background:#ffffff;}
+tr.date-row.w4 td, tr.date-row.w4 .date-cell{background:#eef0f6;}
+tr.date-row.w5 td, tr.date-row.w5 .date-cell{background:#ffffff;}
  
 /* Week header */
 tr.week-hdr td{padding:0;border-bottom:none;background:none!important;}
@@ -97,6 +97,8 @@ tr.week-hdr td{padding:0;border-bottom:none;background:none!important;}
   border-right:2px solid var(--border-dark);
   vertical-align:top;
 }
+.date-cell.w1,.date-cell.w3,.date-cell.w5{background:#ffffff;}
+.date-cell.w2,.date-cell.w4{background:#eef0f6;}
 .date-inner{font-family:'DM Mono',monospace;}
 .date-day{font-size:13px;font-weight:600;color:var(--navy);line-height:1.3;}
 .date-wk{font-size:9px;color:var(--light);margin-top:2px;}
@@ -118,12 +120,12 @@ tr.week-hdr td{padding:0;border-bottom:none;background:none!important;}
 .post-card:hover{filter:brightness(.97);}
 .post-card.selected{outline:2px solid var(--orange);outline-offset:-2px;z-index:1;position:relative;}
 .post-card.w1{background:#ffffff;}
-.post-card.w2{background:#f5f7fb;}
+.post-card.w2{background:#eef0f6;}
 .post-card.w3{background:#ffffff;}
-.post-card.w4{background:#f5f7fb;}
+.post-card.w4{background:#eef0f6;}
 .post-card.w5{background:#ffffff;}
-.post-card:hover.w1,.post-card:hover.w3,.post-card:hover.w5{background:#f0f4ff;}
-.post-card:hover.w2,.post-card:hover.w4{background:#ebeef7;}
+.post-card:hover.w1,.post-card:hover.w3,.post-card:hover.w5{background:#edf2ff;}
+.post-card:hover.w2,.post-card:hover.w4{background:#e4e7f2;}
  
 .pc{padding:8px 10px;border-right:1px solid var(--border);vertical-align:top;font-size:11px;line-height:1.45;overflow:hidden;}
 .pc:last-child{border-right:none;}
@@ -475,7 +477,7 @@ function render(){
       const datePosts=dateMap[date].sort((a,b)=>PLAT_ORDER.indexOf(a.platform)-PLAT_ORDER.indexOf(b.platform));
  
       html+=`<tr class="date-row ${wc}">
-        <td class="date-cell">
+        <td class="date-cell ${wc}">
           <div class="date-inner">
             <div class="date-day">${e(date)}</div>
             <div class="date-wk">${e(datePosts[0].week)}</div>
