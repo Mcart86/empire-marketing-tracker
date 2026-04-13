@@ -1,6 +1,3 @@
-Index · HTML
-Copy
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,7 +16,7 @@ Copy
 }
 *{box-sizing:border-box;margin:0;padding:0;}
 html,body{height:100%;font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);font-size:13px;}
- 
+
 /* ── HEADER ─────────────────────────────────────────── */
 .hdr{
   position:sticky;top:0;z-index:200;
@@ -41,7 +38,7 @@ html,body{height:100%;font-family:'DM Sans',sans-serif;background:var(--bg);colo
 .btn-orange:hover{background:var(--orange-lt);}
 .btn-ghost{background:transparent;color:var(--muted);border:1.5px solid var(--border);}
 .btn-ghost:hover{border-color:var(--navy);color:var(--navy);}
- 
+
 /* ── STATS ──────────────────────────────────────────── */
 .stats-bar{background:var(--surface);border-bottom:1px solid var(--border);padding:7px 20px;display:flex;align-items:center;gap:16px;overflow-x:auto;}
 .stat{display:flex;align-items:center;gap:6px;white-space:nowrap;}
@@ -49,7 +46,7 @@ html,body{height:100%;font-family:'DM Sans',sans-serif;background:var(--bg);colo
 .stat-lbl{font-size:11px;color:var(--muted);}
 .stat-num{font-family:'DM Mono',monospace;font-size:11px;font-weight:500;color:var(--text);}
 .sdiv{width:1px;height:16px;background:var(--border);}
- 
+
 /* ── TOOLBAR ────────────────────────────────────────── */
 .toolbar{position:sticky;top:52px;z-index:190;background:var(--surface);border-bottom:1px solid var(--border);padding:8px 20px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
 .tb-lbl{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--light);margin-right:2px;}
@@ -60,12 +57,12 @@ html,body{height:100%;font-family:'DM Sans',sans-serif;background:var(--bg);colo
 .search-wrap{margin-left:auto;display:flex;align-items:center;gap:6px;background:var(--bg);border:1.5px solid var(--border);border-radius:20px;padding:4px 12px;}
 .search-wrap input{border:none;background:transparent;font-family:'DM Sans',sans-serif;font-size:12px;color:var(--text);outline:none;width:150px;}
 .search-wrap input::placeholder{color:var(--light);}
- 
+
 /* ── MAIN ───────────────────────────────────────────── */
 .main{display:flex;height:calc(100vh - 52px - 38px - 44px);overflow:hidden;}
 .table-pane{flex:1;overflow:auto;}
 .tbl-wrap{min-width:1400px;}
- 
+
 /* ── TABLE ──────────────────────────────────────────── */
 table{width:100%;border-collapse:collapse;}
 thead th{
@@ -77,7 +74,7 @@ thead th{
   white-space:nowrap;
 }
 thead th:last-child{border-right:none;}
- 
+
 /* Date group row */
 tr.date-row td{padding:0;border-bottom:2px solid var(--border-dark);}
 tr.date-row.w1 td, tr.date-row.w1 .date-cell{background:#ffffff;}
@@ -85,14 +82,14 @@ tr.date-row.w2 td, tr.date-row.w2 .date-cell{background:#eef0f6;}
 tr.date-row.w3 td, tr.date-row.w3 .date-cell{background:#ffffff;}
 tr.date-row.w4 td, tr.date-row.w4 .date-cell{background:#eef0f6;}
 tr.date-row.w5 td, tr.date-row.w5 .date-cell{background:#ffffff;}
- 
+
 /* Week header */
 tr.week-hdr td{padding:0;border-bottom:none;background:none!important;}
 .week-hdr-inner{display:flex;align-items:center;gap:12px;padding:7px 20px;border-left:4px solid var(--orange);background:var(--navy);}
 .wh-label{font-family:'Bebas Neue',sans-serif;font-size:15px;letter-spacing:1.5px;color:#fff;}
 .wh-dates{font-size:11px;color:#7a99cc;font-weight:500;}
 .wh-count{margin-left:auto;font-family:'DM Mono',monospace;font-size:10px;color:#7a99cc;background:rgba(255,255,255,.08);padding:2px 8px;border-radius:10px;}
- 
+
 /* Date cell */
 .date-cell{
   width:110px;min-width:110px;
@@ -106,11 +103,11 @@ tr.week-hdr td{padding:0;border-bottom:none;background:none!important;}
 .date-day{font-size:13px;font-weight:600;color:var(--navy);line-height:1.3;}
 .date-wk{font-size:9px;color:var(--light);margin-top:2px;}
 .date-count{margin-top:6px;font-size:9px;color:var(--muted);background:var(--bg);padding:2px 6px;border-radius:10px;display:inline-block;font-family:'DM Mono',monospace;}
- 
+
 /* Posts container inside date row */
 .posts-cell{padding:0;vertical-align:top;}
 .posts-stack{display:flex;flex-direction:column;}
- 
+
 /* Individual post card */
 .post-card{
   display:grid;
@@ -129,10 +126,10 @@ tr.week-hdr td{padding:0;border-bottom:none;background:none!important;}
 .post-card.w5{background:#ffffff;}
 .post-card:hover.w1,.post-card:hover.w3,.post-card:hover.w5{background:#edf2ff;}
 .post-card:hover.w2,.post-card:hover.w4{background:#e4e7f2;}
- 
+
 .pc{padding:8px 10px;border-right:1px solid var(--border);vertical-align:top;font-size:11px;line-height:1.45;overflow:hidden;}
 .pc:last-child{border-right:none;}
- 
+
 /* Cell content styles */
 .plat-cell{display:flex;align-items:flex-start;gap:5px;font-size:11px;font-weight:700;color:var(--navy);}
 .pi{font-size:13px;line-height:1.3;flex-shrink:0;}
@@ -151,7 +148,7 @@ tr.week-hdr td{padding:0;border-bottom:none;background:none!important;}
 .cta-cell{font-size:11px;color:var(--orange);font-weight:600;line-height:1.5;}
 .notes-cell{font-size:11px;color:var(--muted);font-style:italic;line-height:1.5;max-height:56px;overflow:hidden;}
 .status-badge{display:inline-block;padding:3px 9px;border-radius:12px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.3px;white-space:nowrap;}
- 
+
 /* ── DRAWER ─────────────────────────────────────────── */
 .drawer{width:0;overflow:hidden;background:var(--surface);border-left:1px solid var(--border);transition:width .25s cubic-bezier(.4,0,.2,1);display:flex;flex-direction:column;flex-shrink:0;}
 .drawer.open{width:420px;}
@@ -173,7 +170,7 @@ tr.week-hdr td{padding:0;border-bottom:none;background:none!important;}
 .btn-delete:hover{background:#ffebee;border-color:#c62828;}
 .save-indicator{font-size:10px;color:#4caf50;font-weight:600;opacity:0;transition:opacity .3s;}
 .save-indicator.show{opacity:1;}
- 
+
 /* ── ADD MODAL ──────────────────────────────────────── */
 .overlay{display:none;position:fixed;inset:0;background:rgba(10,20,50,.55);z-index:300;align-items:center;justify-content:center;}
 .overlay.open{display:flex;}
@@ -189,7 +186,7 @@ tr.week-hdr td{padding:0;border-bottom:none;background:none!important;}
 .fg input:focus,.fg select:focus,.fg textarea:focus{border-color:var(--navy);background:#fff;}
 .fg textarea{resize:vertical;min-height:70px;}
 .modal-ftr{padding:14px 20px;border-top:1px solid var(--border);display:flex;justify-content:flex-end;gap:10px;}
- 
+
 /* ── TOAST ──────────────────────────────────────────── */
 .toast{position:fixed;bottom:20px;right:20px;z-index:999;background:var(--navy-dark);color:#fff;padding:10px 16px;border-radius:8px;font-size:12px;font-weight:500;display:flex;align-items:center;gap:8px;opacity:0;transform:translateY(8px);transition:opacity .25s,transform .25s;pointer-events:none;}
 .toast.show{opacity:1;transform:translateY(0);}
@@ -202,19 +199,20 @@ tr.week-hdr td{padding:0;border-bottom:none;background:none!important;}
 </style>
 </head>
 <body>
- 
+
 <div class="hdr">
   <div class="hdr-logo">EMPIRE<span>PROMOS</span></div>
   <div class="hdr-pipe"></div>
   <div class="hdr-sub">May 2026 — Content Calendar</div>
   <div class="hdr-right">
     <div class="sync-badge"><div class="sync-dot" id="syncDot"></div><span id="syncLabel">Connecting...</span></div>
+    <button class="btn" style="background:rgba(255,255,255,.1);color:#aac;border:1px solid rgba(255,255,255,.15);font-size:11px;padding:5px 10px;" onclick="if(confirm('Reset and reload all calendar data from scratch?'))forceReseed()">↺ Reset Data</button>
     <button class="btn btn-orange" onclick="openAddModal()">+ Add Post</button>
   </div>
 </div>
- 
+
 <div class="stats-bar" id="statsBar"></div>
- 
+
 <div class="toolbar">
   <span class="tb-lbl">Platform</span>
   <div class="chip on" data-f="platform" data-v="all" onclick="setFilter('platform','all',this)">All</div>
@@ -244,7 +242,7 @@ tr.week-hdr td{padding:0;border-bottom:none;background:none!important;}
     <input type="text" placeholder="Search posts..." oninput="doSearch(this.value)">
   </div>
 </div>
- 
+
 <div class="main">
   <div class="table-pane" id="tablePane">
     <div class="loader" id="loader"><div class="loader-ring"></div><div class="loader-text">Loading from Supabase...</div></div>
@@ -263,7 +261,7 @@ tr.week-hdr td{padding:0;border-bottom:none;background:none!important;}
     </div>
   </div>
 </div>
- 
+
 <div class="overlay" id="addOverlay">
   <div class="modal">
     <div class="modal-hdr"><h3>ADD NEW POST</h3><button class="modal-close" onclick="closeAddModal()">✕</button></div>
@@ -289,31 +287,42 @@ tr.week-hdr td{padding:0;border-bottom:none;background:none!important;}
     </div>
   </div>
 </div>
- 
+
 <div class="toast" id="toast"><div class="dot"></div><span id="toastMsg">Saved</span></div>
- 
+
 <script>
 const SB_URL='https://lbudlspmjobhmrrwpfhg.supabase.co';
 const SB_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImxidWRsc3Btam9iaG1ycndwZmhnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzUwNDM0ODcsImV4cCI6MjA5MDYxOTQ4N30.rSzDOWpTIkugbUEkcXYL6c9BHnzOZujSl11TOH_0aF0';
 const TABLE='content_calendar';
 const hdrs={'apikey':SB_KEY,'Authorization':`Bearer ${SB_KEY}`,'Content-Type':'application/json','Prefer':'return=representation'};
- 
+
 let posts=[], filters={platform:'all',status:'all',pillar:'all'}, search='', selectedId=null, drawerPost=null, toastTimer=null;
- 
+
 async function sbFetch(path,opts={}){
   const r=await fetch(`${SB_URL}/rest/v1/${path}`,{headers:hdrs,...opts});
   if(!r.ok){const t=await r.text();throw new Error(t);}
   return r.status===204?null:r.json();
 }
- 
+
 function norm(p){return{...p,tags:Array.isArray(p.tags)?p.tags:(typeof p.tags==='string'?JSON.parse(p.tags||'[]'):[])};}
- 
+
 async function loadPosts(){
   setSyncState('syncing','Loading...');
   try{
     const data=await sbFetch(`${TABLE}?select=*&order=id.asc`);
-    if(!data||data.length===0){await seedData();}
-    else{posts=data.map(norm);}
+    if(!data||data.length===0){
+      await seedData();
+    } else {
+      posts=data.map(norm);
+      // Check for duplicate platform on same date and flag
+      const seen={};
+      let hasDupes=false;
+      posts.forEach(p=>{const k=`${p.date}||${p.platform}`;if(seen[k])hasDupes=true;seen[k]=true;});
+      if(hasDupes){
+        await forceReseed();
+        return;
+      }
+    }
     setSyncState('ok','Synced');
   }catch(e){
     setSyncState('error','Offline');
@@ -324,7 +333,30 @@ async function loadPosts(){
   document.getElementById('tblWrap').style.display='block';
   render();
 }
- 
+
+async function forceReseed(){
+  setSyncState('syncing','Fixing data...');
+  showToast('Fixing duplicate dates — reloading calendar...');
+  try{
+    // Delete all existing records
+    await sbFetch(`${TABLE}?id=gte.0`,{method:'DELETE'});
+    // Re-seed with corrected data
+    const rows=DEFAULT_POSTS.map(p=>({...p,tags:JSON.stringify(p.tags)}));
+    for(let i=0;i<rows.length;i+=10) await sbFetch(TABLE,{method:'POST',body:JSON.stringify(rows.slice(i,i+10))});
+    const data=await sbFetch(`${TABLE}?select=*&order=id.asc`);
+    posts=data.map(norm);
+    setSyncState('ok','Fixed ✓');
+    showToast('Calendar reloaded with correct schedule ✓');
+  }catch(e){
+    setSyncState('error','Fix failed');
+    showToast('Could not fix data — try Reset button',true);
+    posts=DEFAULT_POSTS.map(norm);
+  }
+  document.getElementById('loader').style.display='none';
+  document.getElementById('tblWrap').style.display='block';
+  render();
+}
+
 async function seedData(){
   showToast('First run — loading calendar data...');
   try{
@@ -335,7 +367,7 @@ async function seedData(){
     showToast('Calendar loaded ✓');
   }catch(e){posts=DEFAULT_POSTS.map(norm);showToast('Seed failed — offline mode',true);}
 }
- 
+
 async function updatePost(id,fields){
   setSyncState('syncing','Saving...');
   try{
@@ -348,7 +380,7 @@ async function updatePost(id,fields){
     setTimeout(()=>document.getElementById('saveIndicator').classList.remove('show'),2500);
   }catch(e){setSyncState('error','Save failed');showToast('Save failed',true);}
 }
- 
+
 async function insertPost(p){
   setSyncState('syncing','Saving...');
   try{
@@ -362,7 +394,7 @@ async function insertPost(p){
     render();
   }catch(e){setSyncState('error','Failed');showToast('Insert failed',true);}
 }
- 
+
 async function removePost(id){
   setSyncState('syncing','Deleting...');
   try{
@@ -373,7 +405,7 @@ async function removePost(id){
     closeDrawer();render();
   }catch(e){setSyncState('error','Failed');showToast('Delete failed',true);}
 }
- 
+
 // ── Style helpers ─────────────────────────────────────────
 const PS={
   'Product Showcase':{bg:'#ddeeff',fg:'#1a3767'},
@@ -394,16 +426,16 @@ const SS={
 const PI={'Instagram + TikTok':'📱','Facebook':'👥','LinkedIn':'💼','X/Twitter':'𝕏'};
 const WD={'Week 1':'May 1–3','Week 2':'May 4–10','Week 3':'May 11–17','Week 4':'May 18–24','Week 5':'May 25–31'};
 const WC={'Week 1':'w1','Week 2':'w2','Week 3':'w3','Week 4':'w4','Week 5':'w5'};
- 
+
 // Canonical date sort order
 const DATE_ORDER=['Fri, May 1','Sat, May 2','Sun, May 3','Mon, May 4','Tue, May 5','Wed, May 6','Thu, May 7','Fri, May 8','Sat, May 9','Sun, May 10','Mon, May 11','Tue, May 12','Wed, May 13','Thu, May 14','Fri, May 15','Sat, May 16','Sun, May 17','Mon, May 18','Tue, May 19','Wed, May 20','Thu, May 21','Fri, May 22','Sat, May 23','Sun, May 24','Mon, May 25','Tue, May 26','Wed, May 27','Thu, May 28','Fri, May 29','Sat, May 30','Sun, May 31'];
 const PLAT_ORDER=['Instagram + TikTok','Facebook','LinkedIn','X/Twitter'];
- 
+
 function e(s){if(!s)return'';return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
 function pillarBadge(p){const s=PS[p]||PS['TBD'];return`<span class="pillar-badge" style="background:${s.bg};color:${s.fg}">${p}</span>`;}
 function statusBadge(s){const st=SS[s]||SS['TBD'];return`<span class="status-badge" style="background:${st.bg};color:${st.fg}">${s}</span>`;}
 function tagHtml(tags){if(!tags||!tags.length)return'<span class="tag tag-tbd">TBD</span>';return(tags||[]).slice(0,3).map((t,i)=>`<span class="tag tag${i}">${t}</span>`).join('');}
- 
+
 const BEST_TIME={
   'Instagram + TikTok':{time:'9–11am or 6–8pm',days:'Tue–Fri'},
   'Facebook':{time:'9–11am',days:'Tue–Thu'},
@@ -420,7 +452,7 @@ function setFilter(type,val,el){
   el.classList.add('on');render();
 }
 function doSearch(val){search=val.toLowerCase();render();}
- 
+
 function visible(){
   return posts.filter(p=>{
     if(filters.platform!=='all'&&p.platform!==filters.platform)return false;
@@ -430,7 +462,7 @@ function visible(){
     return true;
   });
 }
- 
+
 function renderStats(){
   const vis=visible();
   const bySt={};vis.forEach(p=>{bySt[p.status]=(bySt[p.status]||0)+1;});
@@ -445,16 +477,16 @@ function renderStats(){
     `<div class="stat"><div class="stat-dot" style="background:${it.color}"></div><span class="stat-lbl">${it.lbl}</span><span class="stat-num">${it.num}</span></div>`
   ).join('');
 }
- 
+
 function render(){
   renderStats();
   const vis=visible();
- 
+
   // Group by week then by date
   const wOrder=['Week 1','Week 2','Week 3','Week 4','Week 5'];
   const byWeek={};
   vis.forEach(p=>{if(!byWeek[p.week])byWeek[p.week]={};if(!byWeek[p.week][p.date])byWeek[p.week][p.date]=[];byWeek[p.week][p.date].push(p);});
- 
+
   let html=`<table><thead><tr>
     <th style="width:110px">Date</th>
     <th style="width:130px">Platform</th>
@@ -471,25 +503,25 @@ function render(){
     <th style="width:160px">Copy Notes</th>
     <th style="width:100px">Status</th>
   </tr></thead><tbody>`;
- 
+
   wOrder.forEach(week=>{
     if(!byWeek[week])return;
     const dateMap=byWeek[week];
     const allWkPosts=Object.values(dateMap).flat();
     const wc=WC[week]||'w1';
- 
+
     html+=`<tr class="week-hdr"><td colspan="13"><div class="week-hdr-inner">
       <span class="wh-label">${week}</span>
       <span class="wh-dates">${WD[week]||''}</span>
       <span class="wh-count">${allWkPosts.length} post${allWkPosts.length!==1?'s':''}</span>
     </div></td></tr>`;
- 
+
     // Sort dates within week
     const sortedDates=Object.keys(dateMap).sort((a,b)=>DATE_ORDER.indexOf(a)-DATE_ORDER.indexOf(b));
- 
+
     sortedDates.forEach(date=>{
       const datePosts=dateMap[date].sort((a,b)=>PLAT_ORDER.indexOf(a.platform)-PLAT_ORDER.indexOf(b.platform));
- 
+
       html+=`<tr class="date-row ${wc}">
         <td class="date-cell ${wc}">
           <div class="date-inner">
@@ -500,7 +532,7 @@ function render(){
         </td>
         <td class="posts-cell" colspan="12">
           <div class="posts-stack">`;
- 
+
       datePosts.forEach(p=>{
         const sel=selectedId===p.id?' selected':'';
         html+=`<div class="post-card ${wc}${sel}" onclick="selectRow(${p.id})">
@@ -519,15 +551,15 @@ function render(){
           <div class="pc">${statusBadge(p.status)}</div>
         </div>`;
       });
- 
+
       html+=`</div></td></tr>`;
     });
   });
- 
+
   html+='</tbody></table>';
   document.getElementById('tblWrap').innerHTML=html;
 }
- 
+
 // ── Drawer ────────────────────────────────────────────────────
 function selectRow(id){
   selectedId=id;
@@ -604,7 +636,7 @@ function deletePost(){
   if(!confirm(`Delete this post?\n"${drawerPost.hook}"\n\nThis cannot be undone.`))return;
   removePost(drawerPost.id);
 }
- 
+
 // ── Add modal ─────────────────────────────────────────────────
 function openAddModal(){document.getElementById('addOverlay').classList.add('open');}
 function closeAddModal(){document.getElementById('addOverlay').classList.remove('open');}
@@ -622,11 +654,11 @@ function submitAdd(){
   closeAddModal();
   ['m-date','m-theme','m-tags','m-format','m-hook','m-caption','m-hashtags','m-cta','m-visual','m-notes'].forEach(id=>document.getElementById(id).value='');
 }
- 
+
 function sortPosts(){const wo=['Week 1','Week 2','Week 3','Week 4','Week 5'];posts.sort((a,b)=>wo.indexOf(a.week)-wo.indexOf(b.week)||DATE_ORDER.indexOf(a.date)-DATE_ORDER.indexOf(b.date)||a.id-b.id);}
 function setSyncState(state,label){const d=document.getElementById('syncDot');const l=document.getElementById('syncLabel');d.className='sync-dot'+(state==='syncing'?' syncing':state==='error'?' error':'');l.textContent=label;}
 function showToast(msg,isErr=false){const t=document.getElementById('toast');document.getElementById('toastMsg').textContent=msg;t.className='toast show'+(isErr?' err':'');clearTimeout(toastTimer);toastTimer=setTimeout(()=>t.classList.remove('show'),3000);}
- 
+
 const DEFAULT_POSTS=[
   {id:1,date:"Fri, May 1",week:"Week 1",theme:"Drinkware Poll",tags:["Drinkware","Poll","Engagement"],platform:"Instagram + TikTok",pillar:"Fun & Engagement",format:"IG: Poll Graphic  |  TT: BTS Video",hook:"This or that: tumblers vs. water bottles? 🤔  //  Watch us kit 500 boxes in one day 📦",caption:"IG: The eternal merch debate. Drop your vote below ⬇️ Either way — we've got both, fully custom, starting at 1 piece. EmpirePromos.com\n\nTT: This is what kitting & fulfillment looks like at scale. One order, 500 boxes, fully branded. EmpirePromos.com",hashtags:"#EmpirePromotionalProducts #BrandedMerch #CustomDrinkware #CompanySwag #PromotionalProducts #Kitting",cta:"IG: Drop your vote below  |  TT: EmpirePromos.com",visual:"IG: Split graphic — tumbler vs. water bottle, branded. Navy bg, vote prompt in orange.\nTT: Time-lapse kitting line in action. Branded end card.",notes:"IG is engagement-first. TT is BTS/scale.",status:"To Do"},
   {id:2,date:"Sun, May 3",week:"Week 1",theme:"TBD Product",tags:["TBD","Product","General"],platform:"Instagram + TikTok",pillar:"TBD",format:"IG: Feed  |  TT: Video",hook:"TBD — General Product Post",caption:"TBD",hashtags:"#EmpirePromotionalProducts #PromotionalProducts #BrandedMerch",cta:"EmpirePromos.com",visual:"TBD — product to be selected",notes:"Reserved general product post — moved to Sun May 3.",status:"TBD"},
@@ -676,7 +708,7 @@ const DEFAULT_POSTS=[
   {id:46,date:"Sat, May 30",week:"Week 5",theme:"Brand Colors",tags:["Engagement","Mockup","Community"],platform:"Instagram + TikTok",pillar:"Fun & Engagement",format:"IG: Engagement Post  |  TT: Interactive Video",hook:"Drop your brand colors in the comments — we'll design something 🎨",caption:"IG: Tell us your brand colors and we'll mock something up right here in the comments. EmpirePromos.com\n\nTT: What merch would YOU put your brand on? Drop it in the comments and we'll make it happen.",hashtags:"#EmpirePromotionalProducts #BrandedMerch #FreeMockup #CustomMerch #BrandColors",cta:"Drop your brand colors below",visual:"IG: Colorful brand palette graphic.\nTT: Fun, casual energy — invite interaction.",notes:"High-engagement format. Follow through in comments.",status:"To Do"},
   {id:47,date:"Fri, May 29",week:"Week 5",theme:"TBD Product",tags:["TBD","Product","General"],platform:"X/Twitter",pillar:"TBD",format:"Text Post",hook:"TBD — General Product Post",caption:"TBD",hashtags:"#EmpirePromotionalProducts #BrandedMerch",cta:"EmpirePromos.com",visual:"TBD — product to be selected",notes:"Moved to Fri May 29 to fill gap.",status:"TBD"},
 ];
- 
+
 loadPosts();
 </script>
 </body>
