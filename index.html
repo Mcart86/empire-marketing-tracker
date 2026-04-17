@@ -602,7 +602,7 @@ function openDrawerById(id) {
   setTimeout(() => selectRow(id), 50);
 }
 
-
+function setFilter(type,val,el){
   filters[type]=val;
   document.querySelectorAll(`[data-f="${type}"]`).forEach(c=>c.classList.remove('on'));
   el.classList.add('on');render();
