@@ -402,9 +402,18 @@ const hdrs={'apikey':SB_KEY,'Authorization':`Bearer ${SB_KEY}`,'Content-Type':'a
 let posts=[], filters={platform:'all',status:'all',pillar:'all'}, search='', selectedId=null, drawerPost=null, toastTimer=null;
 
 async function sbFetch(path,opts={}){
-  const r=await fetch(`${SB_URL}/rest/v1/${path}`,{headers:hdrs,...opts});
-  if(!r.ok){const t=await r.text();throw new Error(t);}
-  return r.status===204?null:r.json();
+  const url=`${SB_URL}/rest/v1/${path}${path.includes('?')?'&':'?'}apikey=${SB_KEY}`;
+  const controller=new AbortController();
+  const timer=setTimeout(()=>controller.abort(),8000);
+  try{
+    const r=await fetch(url,{headers:hdrs,signal:controller.signal,...opts});
+    clearTimeout(timer);
+    if(!r.ok){const t=await r.text();throw new Error(t);}
+    return r.status===204?null:r.json();
+  }catch(e){
+    clearTimeout(timer);
+    throw e;
+  }
 }
 
 function norm(p){return{...p,tags:Array.isArray(p.tags)?p.tags:(typeof p.tags==='string'?JSON.parse(p.tags||'[]'):[])};}
