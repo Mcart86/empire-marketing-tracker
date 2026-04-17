@@ -393,40 +393,27 @@ tr.week-hdr td{padding:0;border-bottom:none;background:none!important;}
 
 <div class="toast" id="toast"><div class="dot"></div><span id="toastMsg">Saved</span></div>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
 const SB_URL='https://lbudlspmjobhmrrwpfhg.supabase.co';
 const SB_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImxidWRsc3Btam9iaG1ycndwZmhnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzUwNDM0ODcsImV4cCI6MjA5MDYxOTQ4N30.rSzDOWpTIkugbUEkcXYL6c9BHnzOZujSl11TOH_0aF0';
 const TABLE='content_calendar';
-const hdrs={'apikey':SB_KEY,'Authorization':`Bearer ${SB_KEY}`,'Content-Type':'application/json','Prefer':'return=representation'};
+const sb=supabase.createClient(SB_URL,SB_KEY);
 
 let posts=[], filters={platform:'all',status:'all',pillar:'all'}, search='', selectedId=null, drawerPost=null, toastTimer=null;
-
-async function sbFetch(path,opts={}){
-  const url=`${SB_URL}/rest/v1/${path}${path.includes('?')?'&':'?'}apikey=${SB_KEY}`;
-  const controller=new AbortController();
-  const timer=setTimeout(()=>controller.abort(),8000);
-  try{
-    const r=await fetch(url,{headers:hdrs,signal:controller.signal,...opts});
-    clearTimeout(timer);
-    if(!r.ok){const t=await r.text();throw new Error(t);}
-    return r.status===204?null:r.json();
-  }catch(e){
-    clearTimeout(timer);
-    throw e;
-  }
-}
 
 function norm(p){return{...p,tags:Array.isArray(p.tags)?p.tags:(typeof p.tags==='string'?JSON.parse(p.tags||'[]'):[])};}
 
 async function loadPosts(){
   setSyncState('syncing','Loading...');
   try{
-    const data=await sbFetch(`${TABLE}?select=*&order=id.asc`);
+    const {data,error}=await sb.from(TABLE).select('*').order('id',{ascending:true});
+    if(error) throw error;
     posts=(data||[]).map(norm);
     setSyncState('ok','Synced');
   }catch(e){
     setSyncState('error','Offline');
-    showToast('Could not connect to Supabase',true);
+    showToast('Could not connect to Supabase: '+e.message,true);
     posts=[];
   }
   document.getElementById('loader').style.display='none';
@@ -436,9 +423,7 @@ async function loadPosts(){
 
 async function forceReseed(){
   showToast('Nothing to reseed — data lives in Supabase. Use SQL Editor to reset.');
-  return;
 }
-
 async function seedData(){
   showToast('Table is empty — run seed.sql in Supabase SQL Editor');
 }
@@ -446,39 +431,40 @@ async function seedData(){
 async function updatePost(id,fields){
   setSyncState('syncing','Saving...');
   try{
-    await sbFetch(`${TABLE}?id=eq.${id}`,{method:'PATCH',body:JSON.stringify({...fields,updated_at:new Date().toISOString()})});
+    const {error}=await sb.from(TABLE).update({...fields,updated_at:new Date().toISOString()}).eq('id',id);
+    if(error) throw error;
     const idx=posts.findIndex(p=>p.id===id);
     if(idx>-1) Object.assign(posts[idx],fields);
     setSyncState('ok','Saved ✓');
-    showToast('Saved to Supabase ✓');
+    showToast('Saved ✓');
     document.getElementById('saveIndicator').classList.add('show');
     setTimeout(()=>document.getElementById('saveIndicator').classList.remove('show'),2500);
-  }catch(e){setSyncState('error','Save failed');showToast('Save failed',true);}
+  }catch(e){setSyncState('error','Save failed');showToast('Save failed: '+e.message,true);}
 }
 
 async function insertPost(p){
   setSyncState('syncing','Saving...');
   try{
-    const row={...p,tags:JSON.stringify(p.tags)};
-    const result=await sbFetch(TABLE,{method:'POST',body:JSON.stringify(row)});
-    const ins=Array.isArray(result)?result[0]:result;
-    posts.push(norm(ins||p));
+    const {data,error}=await sb.from(TABLE).insert({...p,tags:p.tags}).select();
+    if(error) throw error;
+    posts.push(norm(data[0]||p));
     sortPosts();
     setSyncState('ok','Saved ✓');
     showToast('Post added ✓');
     render();
-  }catch(e){setSyncState('error','Failed');showToast('Insert failed',true);}
+  }catch(e){setSyncState('error','Failed');showToast('Insert failed: '+e.message,true);}
 }
 
 async function removePost(id){
   setSyncState('syncing','Deleting...');
   try{
-    await sbFetch(`${TABLE}?id=eq.${id}`,{method:'DELETE'});
+    const {error}=await sb.from(TABLE).delete().eq('id',id);
+    if(error) throw error;
     posts=posts.filter(p=>p.id!==id);
     setSyncState('ok','Deleted ✓');
     showToast('Post deleted');
     closeDrawer();render();
-  }catch(e){setSyncState('error','Failed');showToast('Delete failed',true);}
+  }catch(e){setSyncState('error','Failed');showToast('Delete failed: '+e.message,true);}
 }
 
 // ── Style helpers ─────────────────────────────────────────
