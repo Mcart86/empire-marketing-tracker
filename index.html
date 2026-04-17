@@ -39,7 +39,91 @@ html,body{height:100%;font-family:'DM Sans',sans-serif;background:var(--bg);colo
 .btn-ghost{background:transparent;color:var(--muted);border:1.5px solid var(--border);}
 .btn-ghost:hover{border-color:var(--navy);color:var(--navy);}
 
-/* ── STATS ──────────────────────────────────────────── */
+/* ── TABS ───────────────────────────────────────────── */
+.tabs-bar{
+  background:var(--navy-dark);
+  padding:0 20px;
+  display:flex;align-items:flex-end;gap:4px;
+  border-bottom:3px solid var(--orange);
+}
+.tab{
+  padding:10px 20px 8px;
+  font-family:'DM Sans',sans-serif;font-size:12px;font-weight:600;
+  color:#7a99cc;cursor:pointer;border-radius:6px 6px 0 0;
+  border:1px solid transparent;border-bottom:none;
+  transition:all .15s;display:flex;align-items:center;gap:8px;
+  margin-bottom:-3px;
+}
+.tab:hover{color:#fff;background:rgba(255,255,255,.07);}
+.tab.active{background:var(--surface);color:var(--navy);border-color:var(--border);border-bottom-color:var(--surface);}
+.tab .tab-badge{
+  background:var(--orange);color:#fff;
+  font-size:10px;font-weight:700;
+  padding:1px 6px;border-radius:10px;
+  min-width:18px;text-align:center;
+}
+.tab.active .tab-badge{background:var(--navy);}
+.tab-scheduled-badge{background:#1b5e20!important;}
+
+/* Scheduled tab view */
+.scheduled-view{padding:24px;}
+.sched-header{
+  display:flex;align-items:center;justify-content:space-between;
+  margin-bottom:20px;
+}
+.sched-title{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:1.5px;color:var(--navy);}
+.sched-subtitle{font-size:12px;color:var(--muted);margin-top:2px;}
+.sched-progress{
+  background:var(--surface);border:1px solid var(--border);border-radius:10px;
+  padding:14px 20px;margin-bottom:20px;
+  display:flex;align-items:center;gap:20px;
+}
+.sched-prog-bar-wrap{flex:1;background:#eef0f6;border-radius:20px;height:10px;overflow:hidden;}
+.sched-prog-bar{height:100%;background:linear-gradient(90deg,#1b5e20,#4caf50);border-radius:20px;transition:width .5s ease;}
+.sched-prog-label{font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);white-space:nowrap;}
+.sched-prog-pct{font-family:'Bebas Neue',sans-serif;font-size:22px;color:#1b5e20;}
+
+.sched-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px;}
+.sched-card{
+  background:var(--surface);border:1px solid var(--border);border-radius:10px;
+  padding:14px;transition:box-shadow .15s;
+  border-left:4px solid #4caf50;
+}
+.sched-card:hover{box-shadow:0 4px 16px rgba(0,0,0,.08);}
+.sched-card-top{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:8px;}
+.sched-card-date{font-family:'DM Mono',monospace;font-size:11px;font-weight:600;color:var(--navy);}
+.sched-card-plat{font-size:11px;font-weight:700;color:var(--muted);}
+.sched-card-theme{font-size:13px;font-weight:700;color:var(--text);margin-bottom:6px;}
+.sched-card-hook{font-size:11px;color:var(--muted);line-height:1.5;margin-bottom:10px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
+.sched-card-bottom{display:flex;align-items:center;justify-content:space-between;gap:8px;}
+.sched-card-tags{display:flex;gap:4px;flex-wrap:wrap;}
+.btn-unschedule{
+  background:none;border:1.5px solid #ffcdd2;color:#c62828;
+  border-radius:5px;padding:3px 8px;
+  font-family:'DM Sans',sans-serif;font-size:10px;font-weight:600;
+  cursor:pointer;white-space:nowrap;transition:all .15s;flex-shrink:0;
+}
+.btn-unschedule:hover{background:#ffebee;}
+
+.empty-sched{
+  text-align:center;padding:60px 20px;
+  color:var(--muted);
+}
+.empty-sched .icon{font-size:48px;margin-bottom:12px;opacity:.4;}
+.empty-sched h3{font-size:16px;font-weight:600;color:var(--text);margin-bottom:6px;}
+.empty-sched p{font-size:12px;line-height:1.6;}
+
+/* Quick schedule button on rows */
+.btn-schedule-quick{
+  display:inline-flex;align-items:center;gap:4px;
+  background:#e8f5e9;border:1.5px solid #a5d6a7;color:#1b5e20;
+  border-radius:5px;padding:3px 8px;
+  font-family:'DM Sans',sans-serif;font-size:10px;font-weight:700;
+  cursor:pointer;white-space:nowrap;transition:all .15s;
+}
+.btn-schedule-quick:hover{background:#c8e6c9;border-color:#66bb6a;}
+.btn-schedule-quick.is-scheduled{background:#1b5e20;border-color:#1b5e20;color:#fff;}
+
 .stats-bar{background:var(--surface);border-bottom:1px solid var(--border);padding:7px 20px;display:flex;align-items:center;gap:16px;overflow-x:auto;}
 .stat{display:flex;align-items:center;gap:6px;white-space:nowrap;}
 .stat-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;}
@@ -211,8 +295,21 @@ tr.week-hdr td{padding:0;border-bottom:none;background:none!important;}
   </div>
 </div>
 
+<div class="tabs-bar">
+  <div class="tab active" id="tab-calendar" onclick="switchTab('calendar')">
+    📅 Calendar
+    <span class="tab-badge" id="badge-calendar">—</span>
+  </div>
+  <div class="tab" id="tab-scheduled" onclick="switchTab('scheduled')">
+    ✅ Scheduled
+    <span class="tab-badge tab-scheduled-badge" id="badge-scheduled">0</span>
+  </div>
+</div>
+
 <div class="stats-bar" id="statsBar"></div>
 
+<!-- CALENDAR TAB CONTENT -->
+<div id="calendarTab">
 <div class="toolbar">
   <span class="tb-lbl">Platform</span>
   <div class="chip on" data-f="platform" data-v="all" onclick="setFilter('platform','all',this)">All</div>
@@ -260,6 +357,12 @@ tr.week-hdr td{padding:0;border-bottom:none;background:none!important;}
       </div>
     </div>
   </div>
+</div>
+</div>
+
+<!-- SCHEDULED TAB CONTENT -->
+<div id="scheduledTab" style="display:none">
+  <div class="scheduled-view" id="scheduledView"></div>
 </div>
 
 <div class="overlay" id="addOverlay">
@@ -446,7 +549,102 @@ function bestTimeCell(platform){
   const bt=BEST_TIME[platform]||{time:'9–11am',days:'Weekdays'};
   return `<div style="font-family:'DM Mono',monospace;font-size:10px;color:#1a3767;font-weight:600;line-height:1.7">${bt.time}</div><div style="font-size:9px;color:#9aa3bb;margin-top:2px">${bt.days} · EST</div>`;
 }
-function setFilter(type,val,el){
+// ── Tab switching ─────────────────────────────────────────────
+let activeTab = 'calendar';
+
+function switchTab(tab) {
+  activeTab = tab;
+  document.getElementById('tab-calendar').classList.toggle('active', tab === 'calendar');
+  document.getElementById('tab-scheduled').classList.toggle('active', tab === 'scheduled');
+  document.getElementById('calendarTab').style.display = tab === 'calendar' ? '' : 'none';
+  document.getElementById('scheduledTab').style.display = tab === 'scheduled' ? '' : 'none';
+  if (tab === 'scheduled') renderScheduled();
+  updateTabBadges();
+}
+
+function updateTabBadges() {
+  const total = posts.length;
+  const scheduled = posts.filter(p => p.status === 'Scheduled').length;
+  const remaining = posts.filter(p => p.status !== 'Scheduled' && p.status !== 'Posted').length;
+  document.getElementById('badge-calendar').textContent = remaining + ' remaining';
+  document.getElementById('badge-scheduled').textContent = scheduled;
+}
+
+function quickSchedule(id, e) {
+  e.stopPropagation();
+  const p = posts.find(x => x.id === id);
+  if (!p) return;
+  const newStatus = p.status === 'Scheduled' ? 'To Do' : 'Scheduled';
+  updatePost(id, { status: newStatus });
+  p.status = newStatus;
+  render();
+  if (activeTab === 'scheduled') renderScheduled();
+  updateTabBadges();
+}
+
+function renderScheduled() {
+  const scheduled = posts.filter(p => p.status === 'Scheduled')
+    .sort((a,b) => DATE_ORDER.indexOf(a.date) - DATE_ORDER.indexOf(b.date));
+  const total = posts.filter(p => p.status !== 'Posted').length;
+  const pct = total > 0 ? Math.round((scheduled.length / total) * 100) : 0;
+  const container = document.getElementById('scheduledView');
+
+  if (scheduled.length === 0) {
+    container.innerHTML = `
+      <div class="sched-header">
+        <div><div class="sched-title">SCHEDULED POSTS</div><div class="sched-subtitle">Posts marked as scheduled will appear here</div></div>
+      </div>
+      <div class="empty-sched">
+        <div class="icon">📅</div>
+        <h3>Nothing scheduled yet</h3>
+        <p>Go to the Calendar tab and click <strong>Schedule ✓</strong> on any post to move it here.<br>This gives you a clear view of what's locked in vs. what still needs attention.</p>
+      </div>`;
+    return;
+  }
+
+  const cards = scheduled.map(p => {
+    const ps = PS[p.pillar] || PS['TBD'];
+    return `<div class="sched-card" onclick="openDrawerById(${p.id})">
+      <div class="sched-card-top">
+        <div>
+          <div class="sched-card-date">${e(p.date)}</div>
+          <div class="sched-card-plat">${PI[p.platform]||'📌'} ${e(p.platform)}</div>
+        </div>
+        <button class="btn-unschedule" onclick="quickSchedule(${p.id},event)">✕ Unschedule</button>
+      </div>
+      <div class="sched-card-theme">${e(p.theme)}</div>
+      <div class="sched-card-hook">${e(p.hook)}</div>
+      <div class="sched-card-bottom">
+        <div class="sched-card-tags">${tagHtml(p.tags)}</div>
+        <span class="pillar-badge" style="background:${ps.bg};color:${ps.fg};font-size:9px">${e(p.pillar)}</span>
+      </div>
+    </div>`;
+  }).join('');
+
+  container.innerHTML = `
+    <div class="sched-header">
+      <div>
+        <div class="sched-title">SCHEDULED POSTS</div>
+        <div class="sched-subtitle">${scheduled.length} post${scheduled.length!==1?'s':''} scheduled for May 2026</div>
+      </div>
+    </div>
+    <div class="sched-progress">
+      <div class="sched-prog-pct">${pct}%</div>
+      <div style="flex:1">
+        <div style="font-size:11px;font-weight:600;color:var(--text);margin-bottom:6px">${scheduled.length} of ${total} posts scheduled</div>
+        <div class="sched-prog-bar-wrap"><div class="sched-prog-bar" style="width:${pct}%"></div></div>
+      </div>
+      <div class="sched-prog-label">${total - scheduled.length} still need scheduling</div>
+    </div>
+    <div class="sched-grid">${cards}</div>`;
+}
+
+function openDrawerById(id) {
+  switchTab('calendar');
+  setTimeout(() => selectRow(id), 50);
+}
+
+
   filters[type]=val;
   document.querySelectorAll(`[data-f="${type}"]`).forEach(c=>c.classList.remove('on'));
   el.classList.add('on');render();
@@ -548,7 +746,12 @@ function render(){
           <div class="pc"><div class="cta-cell">${e(p.cta)}</div></div>
           <div class="pc"><div class="notes-cell">${e(p.visual)}</div></div>
           <div class="pc"><div class="notes-cell">${e(p.notes)}</div></div>
-          <div class="pc">${statusBadge(p.status)}</div>
+          <div class="pc" style="display:flex;flex-direction:column;gap:6px;align-items:flex-start">
+            ${statusBadge(p.status)}
+            <button class="btn-schedule-quick${p.status==='Scheduled'?' is-scheduled':''}" onclick="quickSchedule(${p.id},event)">
+              ${p.status==='Scheduled'?'✓ Scheduled':'Schedule ✓'}
+            </button>
+          </div>
         </div>`;
       });
 
@@ -558,6 +761,7 @@ function render(){
 
   html+='</tbody></table>';
   document.getElementById('tblWrap').innerHTML=html;
+  updateTabBadges();
 }
 
 // ── Drawer ────────────────────────────────────────────────────
