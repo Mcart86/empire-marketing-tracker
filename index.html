@@ -195,7 +195,7 @@ tr.week-hdr td{padding:0;border-bottom:none;background:none!important;}
 /* Individual post card */
 .post-card{
   display:grid;
-  grid-template-columns: 140px 90px 130px 130px 130px 160px 180px 120px 100px;
+  grid-template-columns: 130px 100px 130px 140px 130px 140px 200px 260px 180px 120px 160px 160px 120px;
   border-bottom:1px solid var(--border);
   cursor:pointer;
   transition:filter .1s;
@@ -611,6 +611,8 @@ function doSearch(val){search=val.toLowerCase();render();}
 
 function visible(){
   return posts.filter(p=>{
+    // Scheduled posts only show in Scheduled tab, not Calendar
+    if(activeTab==='calendar' && p.status==='Scheduled') return false;
     if(filters.platform!=='all'&&p.platform!==filters.platform)return false;
     if(filters.status!=='all'&&p.status!==filters.status)return false;
     if(filters.pillar!=='all'&&p.pillar!==filters.pillar)return false;
@@ -644,20 +646,20 @@ function render(){
   vis.forEach(p=>{if(!byWeek[p.week])byWeek[p.week]={};if(!byWeek[p.week][p.date])byWeek[p.week][p.date]=[];byWeek[p.week][p.date].push(p);});
 
   let html=`<table><thead><tr>
-    <th style="width:110px">Date</th>
-    <th style="width:130px">Platform</th>
-    <th style="width:100px">Best Time (EST)</th>
-    <th style="width:130px">Theme</th>
-    <th style="width:140px">Topic Tags</th>
-    <th style="width:130px">Content Pillar</th>
-    <th style="width:140px">Format</th>
-    <th style="width:200px">Caption Hook</th>
-    <th style="width:260px">Full Caption</th>
-    <th style="width:180px">Hashtags</th>
-    <th style="width:120px">CTA</th>
-    <th style="width:160px">Visual Direction</th>
-    <th style="width:160px">Copy Notes</th>
-    <th style="width:100px">Status</th>
+    <th style="width:110px;min-width:110px">Date</th>
+    <th style="width:130px;min-width:130px">Platform</th>
+    <th style="width:100px;min-width:100px">Best Time (EST)</th>
+    <th style="width:130px;min-width:130px">Theme</th>
+    <th style="width:140px;min-width:140px">Topic Tags</th>
+    <th style="width:130px;min-width:130px">Content Pillar</th>
+    <th style="width:140px;min-width:140px">Format</th>
+    <th style="width:200px;min-width:200px">Caption Hook</th>
+    <th style="width:260px;min-width:260px">Full Caption</th>
+    <th style="width:180px;min-width:180px">Hashtags</th>
+    <th style="width:120px;min-width:120px">CTA</th>
+    <th style="width:160px;min-width:160px">Visual Direction</th>
+    <th style="width:160px;min-width:160px">Copy Notes</th>
+    <th style="width:120px;min-width:120px">Status</th>
   </tr></thead><tbody>`;
 
   wOrder.forEach(week=>{
@@ -666,7 +668,7 @@ function render(){
     const allWkPosts=Object.values(dateMap).flat();
     const wc=WC[week]||'w1';
 
-    html+=`<tr class="week-hdr"><td colspan="13"><div class="week-hdr-inner">
+    html+=`<tr class="week-hdr"><td colspan="14"><div class="week-hdr-inner">
       <span class="wh-label">${week}</span>
       <span class="wh-dates">${WD[week]||''}</span>
       <span class="wh-count">${allWkPosts.length} post${allWkPosts.length!==1?'s':''}</span>
@@ -686,7 +688,7 @@ function render(){
             <div class="date-count">${datePosts.length} post${datePosts.length!==1?'s':''}</div>
           </div>
         </td>
-        <td class="posts-cell" colspan="12">
+        <td class="posts-cell" colspan="13">
           <div class="posts-stack">`;
 
       datePosts.forEach(p=>{
