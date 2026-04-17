@@ -413,24 +413,12 @@ async function loadPosts(){
   setSyncState('syncing','Loading...');
   try{
     const data=await sbFetch(`${TABLE}?select=*&order=id.asc`);
-    if(!data||data.length===0){
-      await seedData();
-    } else {
-      posts=data.map(norm);
-      // Check for duplicate platform on same date and flag
-      const seen={};
-      let hasDupes=false;
-      posts.forEach(p=>{const k=`${p.date}||${p.platform}`;if(seen[k])hasDupes=true;seen[k]=true;});
-      if(hasDupes){
-        await forceReseed();
-        return;
-      }
-    }
+    posts=(data||[]).map(norm);
     setSyncState('ok','Synced');
   }catch(e){
     setSyncState('error','Offline');
-    showToast('Could not connect — check Supabase table setup',true);
-    posts=DEFAULT_POSTS.map(norm);
+    showToast('Could not connect to Supabase',true);
+    posts=[];
   }
   document.getElementById('loader').style.display='none';
   document.getElementById('tblWrap').style.display='block';
@@ -438,37 +426,12 @@ async function loadPosts(){
 }
 
 async function forceReseed(){
-  setSyncState('syncing','Fixing data...');
-  showToast('Fixing duplicate dates — reloading calendar...');
-  try{
-    // Delete all existing records
-    await sbFetch(`${TABLE}?id=gte.0`,{method:'DELETE'});
-    // Re-seed with corrected data
-    const rows=DEFAULT_POSTS.map(p=>({...p,tags:JSON.stringify(p.tags)}));
-    for(let i=0;i<rows.length;i+=10) await sbFetch(TABLE,{method:'POST',body:JSON.stringify(rows.slice(i,i+10))});
-    const data=await sbFetch(`${TABLE}?select=*&order=id.asc`);
-    posts=data.map(norm);
-    setSyncState('ok','Fixed ✓');
-    showToast('Calendar reloaded with correct schedule ✓');
-  }catch(e){
-    setSyncState('error','Fix failed');
-    showToast('Could not fix data — try Reset button',true);
-    posts=DEFAULT_POSTS.map(norm);
-  }
-  document.getElementById('loader').style.display='none';
-  document.getElementById('tblWrap').style.display='block';
-  render();
+  showToast('Nothing to reseed — data lives in Supabase. Use SQL Editor to reset.');
+  return;
 }
 
 async function seedData(){
-  showToast('First run — loading calendar data...');
-  try{
-    const rows=DEFAULT_POSTS.map(p=>({...p,tags:JSON.stringify(p.tags)}));
-    for(let i=0;i<rows.length;i+=10) await sbFetch(TABLE,{method:'POST',body:JSON.stringify(rows.slice(i,i+10))});
-    const data=await sbFetch(`${TABLE}?select=*&order=id.asc`);
-    posts=data.map(norm);
-    showToast('Calendar loaded ✓');
-  }catch(e){posts=DEFAULT_POSTS.map(norm);showToast('Seed failed — offline mode',true);}
+  showToast('Table is empty — run seed.sql in Supabase SQL Editor');
 }
 
 async function updatePost(id,fields){
